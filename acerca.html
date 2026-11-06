@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - FC Barcelona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f4f4f9;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #004d98 0%, #a50044 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.activo {
+            background: rgba(255,255,255,0.25);
+        }
+
+        header {
+            background: linear-gradient(135deg, #004d98 0%, #a50044 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #a50044;
+        }
+
+        .card h2 {
+            color: #004d98;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        footer {
+            background: #004d98;
+            color: #fff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">⚽ FC Barcelona</div>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jugadores.html">Jugadores</a></li>
+            <li><a href="acerca.html" class="activo">Acerca de</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Acerca de este sitio</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>¿Quién soy?</h2>
+            <p>
+                Hola, soy <strong>Jorge Pradas Aguiar</strong>, creador de este sitio web dedicado al FC Barcelona
+                y a su apasionante historia en la Champions League. Este proyecto nació como una forma de practicar
+                desarrollo web mientras comparto mi pasión por el fútbol.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>¿Qué encontrarás aquí?</h2>
+            <p>
+                En este sitio podrás leer crónicas de partidos, conocer a algunos de los jugadores más destacados
+                del primer equipo y repasar la historia y la rivalidad entre el FC Barcelona y el Paris Saint-Germain.
+                Todo con un diseño limpio, responsive y pensado para que la lectura sea cómoda desde cualquier
+                dispositivo.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Tecnologías utilizadas</h2>
+            <p>
+                El sitio está construido con <strong>HTML5</strong> y <strong>CSS3</strong>, sin frameworks externos,
+                y publicado de forma gratuita mediante <strong>GitHub Pages</strong>. El código es sencillo y fácil
+                de mantener, ideal para seguir ampliándolo con nuevas secciones.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Contacto</h2>
+            <p>
+                Si quieres ponerte en contacto conmigo para sugerencias, correcciones o simplemente para hablar de
+                fútbol, puedes hacerlo a través de la página de <a href="contacto.html" style="color:#a50044; font-weight:600;">Contacto</a>.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Hecho por <strong>Jorge Pradas Aguiar</strong></p>
+    </footer>
+
+</body>
+</html>
