@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugadores - FC Barcelona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #004d98 0%, #a50044 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.activo {
+            background: rgba(255,255,255,0.25);
+        }
+
+        header {
+            background: linear-gradient(135deg, #004d98 0%, #a50044 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .jugadores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .ficha {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #a50044;
+        }
+
+        .ficha:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .ficha .foto {
+            width: 100%;
+            height: 260px;
+            background: linear-gradient(135deg, #004d98, #a50044);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .ficha .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ficha .info {
+            padding: 20px;
+        }
+
+        .ficha h2 {
+            color: #004d98;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .ficha .posicion {
+            display: inline-block;
+            background: #a50044;
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .ficha .dorsal {
+            float: right;
+            background: #004d98;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .ficha .datos {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .ficha .datos strong {
+            color: #333;
+        }
+
+        /* NUEVA SECCIÓN DE ESTADÍSTICAS DE TEMPORADA */
+        .ficha .stats-temporada {
+            margin-top: 15px;
+            padding: 12px 10px;
+            background: linear-gradient(135deg, rgba(0,77,152,0.08), rgba(165,0,68,0.08));
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .ficha .stats-temporada div {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .ficha .stats-temporada div span {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #004d98;
+            line-height: 1.3;
+        }
+
+        .ficha .stats-temporada div span.rojo {
+            color: #a50044;
+        }
+
+        .ficha .nota-stats {
+            font-size: 0.7rem;
+            color: #999;
+            text-align: center;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        footer {
+            background: #004d98;
+            color: #fff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">⚽ FC Barcelona</div>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jugadores.html" class="activo">Jugadores</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Jugadores del FC Barcelona</h1>
+        <p>Fichas de 7 figuras del primer equipo · Temporada 2026/27</p>
+    </header>
+
+    <div class="container">
+        <div class="jugadores-grid">
+
+            <!-- JUGADOR 1: LAMINE YAMAL -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="lamine.jpg" alt="Lamine Yamal">
+                </div>
+                <div class="info">
+                    <div class="dorsal">10</div>
+                    <h2>Lamine Yamal Nasraoui Ebana</h2>
+                    <span class="posicion">Extremo derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 13/07/2007</p>
+                        <p><strong>Lugar:</strong> Esplugues de Llobregat, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Delantero / Extremo derecho</p>
+                    </div>
+                    <!-- ESTADÍSTICAS TEMPORADA 2026/27 -->
+                    <div class="stats-temporada">
+                        <div>Partidos<span>11</span></div>
+                        <div>Goles<span class="rojo">10</span></div>
+                        <div>Asist.<span>7</span></div>
+                        <div>G+A<span class="rojo">17</span></div>
+                    </div>
+                    <p class="nota-stats">Datos de LaLiga/FBref 2026/27 [citation:2]</p>
+                </div>
+            </div>
+
+            <!-- JUGADOR 2: RAPHINHA -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="raphinha.webp" alt="Raphinha">
+                </div>
+                <div class="info">
+                    <div class="dorsal">11</div>
+                    <h2>Raphael Dias Belloli "Raphinha"</h2>
+                    <span class="posicion">Extremo izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/12/1996</p>
+                        <p><strong>Lugar:</strong> Porto Alegre, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
+                        <p><strong>Altura:</strong> 1,76 m</p>
+                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span>10</span></div>
+                        <div>Goles<span class="rojo">15</span></div>
+                        <div>Asist.<span>3</span></div>
+                        <div>G+A<span class="rojo">18</span></div>
+                    </div>
+                    <p class="nota-stats">Datos de FBref 2026/27 (todas las competiciones) [citation:4]</p>
+                </div>
+            </div>
+
+            <!-- JUGADOR 3: PEDRI -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="pedri.webp" alt="Pedri">
+                </div>
+                <div class="info">
+                    <div class="dorsal">8</div>
+                    <h2>Pedro González López "Pedri"</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/11/2002</p>
+                        <p><strong>Lugar:</strong> Tegueste, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,74 m</p>
+                        <p><strong>Peso:</strong> 65 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span>9</span></div>
+                        <div>Goles<span class="rojo">1</span></div>
+                        <div>Asist.<span>1</span></div>
+                        <div>G+A<span class="rojo">2</span></div>
+                    </div>
+                    <p class="nota-stats">Datos de LaLiga 2026/27 </p>
+                </div>
+            </div>
+
+            <!-- JUGADOR 4: FERMÍN (sin datos verificados en búsqueda) -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="fermin.webp" alt="Fermín López">
+                </div>
+                <div class="info">
+                    <div class="dorsal">7</div>
+                    <h2>Fermín López Marín</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 11/05/2003</p>
+                        <p><strong>Lugar:</strong> El Campillo, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,76 m</p>
+                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Posición:</strong> Mediocentro ofensivo</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span>9</span></div>
+                        <div>Goles<span class="rojo">4</span></div>
+                        <div>Asist.<span>3</span></div>
+                        <div>G+A<span class="rojo">7</span></div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- JUGADOR 5: ANTHONY GORDON (sin datos verificados en búsqueda) -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="gordon.webp" alt="Anthony Gordon">
+                </div>
+                <div class="info">
+                    <div class="dorsal">17</div>
+                    <h2>Anthony Michael Gordon</h2>
+                    <span class="posicion">Extremo izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 24/02/2001 (25 años)</p>
+                        <p><strong>Lugar:</strong> Liverpool, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Inglaterra</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 76 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo / Delantero</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span></span></div>
+                        <div>Goles<span class="rojo">—</span></div>
+                        <div>Asist.<span>—</span></div>
+                        <div>G+A<span class="rojo">—</span></div>
+                    </div>
+                    <p class="nota-stats">Datos no disponibles en fuentes consultadas</p>
+                </div>
+            </div>
+
+            <!-- JUGADOR 6: KARIM ADEYEMI (sin datos verificados en búsqueda) -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="adeyemi.webp" alt="Karim Adeyemi">
+                </div>
+                <div class="info">
+                    <div class="dorsal">19</div>
+                    <h2>Karim-David Adeyemi</h2>
+                    <span class="posicion">Extremo izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 18/01/2002 (24 años)</p>
+                        <p><strong>Lugar:</strong> Múnich, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo / Delantero</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span>—</span></div>
+                        <div>Goles<span class="rojo">—</span></div>
+                        <div>Asist.<span>—</span></div>
+                        <div>G+A<span class="rojo">—</span></div>
+                    </div>
+                    <p class="nota-stats">Datos no disponibles en fuentes consultadas</p>
+                </div>
+            </div>
+
+            <!-- JUGADOR 7: DANI OLMO (sin datos verificados en búsqueda) -->
+            <div class="ficha">
+                <div class="foto">
+                    <img src="olmo.webp" alt="Dani Olmo">
+                </div>
+                <div class="info">
+                    <div class="dorsal">20</div>
+                    <h2>Daniel Olmo Carvajal "Dani Olmo"</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 07/05/1998 (28 años)</p>
+                        <p><strong>Lugar:</strong> Terrassa, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,79 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Mediocentro ofensivo / Extremo</p>
+                    </div>
+                    <div class="stats-temporada">
+                        <div>Partidos<span>—</span></div>
+                        <div>Goles<span class="rojo">—</span></div>
+                        <div>Asist.<span>—</span></div>
+                        <div>G+A<span class="rojo">—</span></div>
+                    </div>
+                    <p class="nota-stats">Datos no disponibles en fuentes consultadas</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Hecho por <strong>Jorge Pradas Aguiar</strong></p>
+    </footer>
+
+</body>
+</html>
