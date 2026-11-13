@@ -5,309 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jugadores - FC Barcelona</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        nav {
-            background: linear-gradient(90deg, #004d98 0%, #a50044 100%);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        nav .logo {
-            color: #fff;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: background 0.3s;
-        }
-
-        nav ul li a:hover,
-        nav ul li a.activo {
-            background: rgba(255,255,255,0.25);
-        }
-
-        header {
-            background: linear-gradient(135deg, #004d98 0%, #a50044 100%);
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* TÍTULOS DE SECCIÓN */
-        .seccion-titulo {
-            margin: 45px 0 20px;
-            padding: 12px 20px;
-            background: linear-gradient(90deg, #004d98, #a50044);
-            color: #fff;
-            border-radius: 12px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .seccion-titulo:first-of-type {
-            margin-top: 0;
-        }
-
-        .jugadores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .ficha {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #a50044;
-        }
-
-        .ficha:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .ficha .foto {
-            width: 100%;
-            height: 260px;
-            background: linear-gradient(135deg, #004d98, #a50044);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 4rem;
-            font-weight: bold;
-        }
-
-        .ficha .foto img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ficha .info {
-            padding: 20px;
-        }
-
-        .ficha h2 {
-            color: #004d98;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .ficha .posicion {
-            display: inline-block;
-            background: #a50044;
-            color: #fff;
-            font-size: 0.8rem;
-            padding: 3px 10px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .ficha .dorsal {
-            float: right;
-            background: #004d98;
-            color: #fff;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .ficha .datos {
-            font-size: 0.9rem;
-            color: #555;
-            margin-top: 10px;
-        }
-
-        .ficha .datos strong {
-            color: #333;
-        }
-
-        .ficha .stats-temporada {
-            margin-top: 15px;
-            padding: 12px 10px;
-            background: linear-gradient(135deg, rgba(0,77,152,0.08), rgba(165,0,68,0.08));
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            gap: 10px;
-        }
-
-        .ficha .stats-temporada div {
-            font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .ficha .stats-temporada div span {
-            display: block;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #004d98;
-            line-height: 1.3;
-        }
-
-        .ficha .stats-temporada div span.rojo {
-            color: #a50044;
-        }
-
-        .ficha .nota-stats {
-            font-size: 0.7rem;
-            color: #999;
-            text-align: center;
-            margin-top: 6px;
-            font-style: italic;
-        }
-
-        .tabla-resumen {
-            margin-top: 50px;
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-top: 5px solid #004d98;
-        }
-
-        .tabla-resumen h2 {
-            background: linear-gradient(90deg, #004d98, #a50044);
-            color: #fff;
-            padding: 15px 20px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        .tabla-resumen table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .tabla-resumen th,
-        .tabla-resumen td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
-        }
-
-        .tabla-resumen th {
-            background: #f4f4f9;
-            color: #004d98;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        .tabla-resumen tr:last-child td {
-            border-bottom: none;
-        }
-
-        .tabla-resumen tr:hover td {
-            background: rgba(0,77,152,0.05);
-        }
-
-        .tabla-resumen td.jugador-nombre {
-            text-align: left;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .tabla-resumen td.goles,
-        .tabla-resumen td.ga {
-            font-weight: 800;
-            color: #a50044;
-        }
-
-        .tabla-resumen td.asist {
-            font-weight: 700;
-            color: #004d98;
-        }
-
-        footer {
-            background: #004d98;
-            color: #fff;
-            text-align: center;
-            padding: 25px 20px;
-            margin-top: 50px;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 700px) {
-            nav {
-                flex-direction: column;
-                gap: 10px;
-            }
-            nav ul {
-                justify-content: center;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
-            .tabla-resumen th,
-            .tabla-resumen td {
-                padding: 8px 6px;
-                font-size: 0.8rem;
-            }
-            .seccion-titulo {
-                font-size: 1.1rem;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f4f4f9; color: #333; line-height: 1.6; }
+        nav { background: linear-gradient(90deg, #004d98 0%, #a50044 100%); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        nav .logo { color: #fff; font-size: 1.3rem; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: 600; padding: 8px 15px; border-radius: 20px; transition: background 0.3s; }
+        nav ul li a:hover, nav ul li a.activo { background: rgba(255,255,255,0.25); }
+        header { background: linear-gradient(135deg, #004d98 0%, #a50044 100%); color: #fff; text-align: center; padding: 60px 20px; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .seccion-titulo { margin: 45px 0 20px; padding: 12px 20px; background: linear-gradient(90deg, #004d98, #a50044); color: #fff; border-radius: 12px; font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .seccion-titulo:first-of-type { margin-top: 0; }
+        .jugadores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .ficha { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; border-top: 5px solid #a50044; }
+        .ficha:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .ficha .foto { width: 100%; height: 260px; background: linear-gradient(135deg, #004d98, #a50044); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 4rem; font-weight: bold; position: relative; overflow: hidden; }
+        .ficha .foto img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+        .ficha .foto span { position: relative; z-index: 1; }
+        .ficha .info { padding: 20px; }
+        .ficha h2 { color: #004d98; font-size: 1.3rem; margin-bottom: 5px; }
+        .ficha .posicion { display: inline-block; background: #a50044; color: #fff; font-size: 0.8rem; padding: 3px 10px; border-radius: 15px; margin-bottom: 12px; font-weight: 600; }
+        .ficha .dorsal { float: right; background: #004d98; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; }
+        .ficha .datos { font-size: 0.9rem; color: #555; margin-top: 10px; }
+        .ficha .datos strong { color: #333; }
+        .ficha .stats-temporada { margin-top: 15px; padding: 12px 10px; background: linear-gradient(135deg, rgba(0,77,152,0.08), rgba(165,0,68,0.08)); border-radius: 12px; display: flex; justify-content: space-around; text-align: center; gap: 10px; }
+        .ficha .stats-temporada div { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .ficha .stats-temporada div span { display: block; font-size: 1.6rem; font-weight: 800; color: #004d98; line-height: 1.3; }
+        .ficha .stats-temporada div span.rojo { color: #a50044; }
+        .ficha .nota-stats { font-size: 0.7rem; color: #999; text-align: center; margin-top: 6px; font-style: italic; }
+        .tabla-resumen { margin-top: 50px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 5px solid #004d98; }
+        .tabla-resumen h2 { background: linear-gradient(90deg, #004d98, #a50044); color: #fff; padding: 15px 20px; font-size: 1.2rem; text-align: center; }
+        .tabla-resumen table { width: 100%; border-collapse: collapse; }
+        .tabla-resumen th, .tabla-resumen td { padding: 12px 15px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .tabla-resumen th { background: #f4f4f9; color: #004d98; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .tabla-resumen tr:last-child td { border-bottom: none; }
+        .tabla-resumen tr:hover td { background: rgba(0,77,152,0.05); }
+        .tabla-resumen td.jugador-nombre { text-align: left; font-weight: 600; color: #333; }
+        .tabla-resumen td.goles, .tabla-resumen td.ga { font-weight: 800; color: #a50044; }
+        .tabla-resumen td.asist { font-weight: 700; color: #004d98; }
+        footer { background: #004d98; color: #fff; text-align: center; padding: 25px 20px; margin-top: 50px; font-size: 0.95rem; }
+        footer a { color: #fff; text-decoration: underline; }
+        @media (max-width: 700px) { nav { flex-direction: column; gap: 10px; } nav ul { justify-content: center; } header h1 { font-size: 1.8rem; } .tabla-resumen th, .tabla-resumen td { padding: 8px 6px; font-size: 0.8rem; } .seccion-titulo { font-size: 1.1rem; } }
     </style>
 </head>
 <body>
@@ -329,15 +68,12 @@
 
     <div class="container">
 
-        <!-- ==================== ATACANTES ==================== -->
+        <!-- ATACANTES -->
         <h2 class="seccion-titulo">⚡ Atacantes</h2>
         <div class="jugadores-grid">
-
             <!-- LAMINE YAMAL -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="lamine.jpg" alt="Lamine Yamal">
-                </div>
+            <div class="ficha" data-player-slug="lamine-yamal">
+                <div class="foto"><img src="lamine.jpg" alt="Lamine Yamal" onerror="this.style.display='none'"><span>LY</span></div>
                 <div class="info">
                     <div class="dorsal">10</div>
                     <h2>Lamine Yamal Nasraoui Ebana</h2>
@@ -356,15 +92,13 @@
                         <div>Asist.<span>6</span></div>
                         <div>G+A<span class="rojo">14</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- RAPHINHA -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="raphinha.webp" alt="Raphinha">
-                </div>
+            <div class="ficha" data-player-slug="raphinha">
+                <div class="foto"><img src="raphinha.webp" alt="Raphinha" onerror="this.style.display='none'"><span>R</span></div>
                 <div class="info">
                     <div class="dorsal">11</div>
                     <h2>Raphael Dias Belloli "Raphinha"</h2>
@@ -383,15 +117,13 @@
                         <div>Asist.<span>3</span></div>
                         <div>G+A<span class="rojo">16</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- ANTHONY GORDON -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="gordon.webp" alt="Anthony Gordon">
-                </div>
+            <div class="ficha" data-player-slug="anthony-gordon">
+                <div class="foto"><img src="gordon.webp" alt="Anthony Gordon" onerror="this.style.display='none'"><span>AG</span></div>
                 <div class="info">
                     <div class="dorsal">17</div>
                     <h2>Anthony Michael Gordon</h2>
@@ -410,15 +142,13 @@
                         <div>Asist.<span>4</span></div>
                         <div>G+A<span class="rojo">6</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- KARIM ADEYEMI -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="adeyemi.webp" alt="Karim Adeyemi">
-                </div>
+            <div class="ficha" data-player-slug="karim-adeyemi">
+                <div class="foto"><img src="adeyemi.webp" alt="Karim Adeyemi" onerror="this.style.display='none'"><span>KA</span></div>
                 <div class="info">
                     <div class="dorsal">14</div>
                     <h2>Karim-David Adeyemi</h2>
@@ -437,16 +167,13 @@
                         <div>Asist.<span>2</span></div>
                         <div>G+A<span class="rojo">4</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FootyStats)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- GABRIEL JESUS -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="gabriel.jpg" alt="Gabriel Jesus">
-                    <span>GJ</span>
-                </div>
+            <div class="ficha" data-player-slug="gabriel-jesus">
+                <div class="foto"><img src="gabriel.jpg" alt="Gabriel Jesus" onerror="this.style.display='none'"><span>GJ</span></div>
                 <div class="info">
                     <div class="dorsal">9</div>
                     <h2>Gabriel Jesus</h2>
@@ -465,16 +192,13 @@
                         <div>Asist.<span>1</span></div>
                         <div>G+A<span class="rojo">5</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- ROONY BARDGHJI -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="ronny.jpg" alt="Ronny Bardghji">
-                    <span>RB</span>
-                </div>
+            <div class="ficha" data-player-slug="roony-bardghji">
+                <div class="foto"><img src="ronny.jpg" alt="Roony Bardghji" onerror="this.style.display='none'"><span>RB</span></div>
                 <div class="info">
                     <div class="dorsal">19</div>
                     <h2>Roony Bardghji</h2>
@@ -493,16 +217,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- JESSE BISIWU -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="jesse.jpg" alt="Jesse Bisiwu">
-                    <span>JB</span>
-                </div>
+            <div class="ficha" data-player-slug="jesse-bisiwu">
+                <div class="foto"><img src="jesse.jpg" alt="Jesse Bisiwu" onerror="this.style.display='none'"><span>JB</span></div>
                 <div class="info">
                     <div class="dorsal">27</div>
                     <h2>Jesse Bisiwu</h2>
@@ -521,16 +242,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- HAMZA ABDELKARIM -->
-            <div class="ficha">
-                <div class="foto">
-                     <img src="hamza.jpg" alt="Hamza Abdelkarim"> 
-                <span>HA</span>
-                </div>
+            <div class="ficha" data-player-slug="hamza-abdelkarim">
+                <div class="foto"><img src="hamza.jpg" alt="Hamza Abdelkarim" onerror="this.style.display='none'"><span>HA</span></div>
                 <div class="info">
                     <div class="dorsal">29</div>
                     <h2>Hamza Abdelkarim</h2>
@@ -549,21 +267,17 @@
                         <div>Asist.<span>1</span></div>
                         <div>G+A<span class="rojo">1</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
-
         </div>
 
-        <!-- ==================== CENTROCAMPISTAS ==================== -->
+        <!-- CENTROCAMPISTAS -->
         <h2 class="seccion-titulo">🎯 Centrocampistas</h2>
         <div class="jugadores-grid">
-
             <!-- PEDRI -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="pedri.webp" alt="Pedri">
-                </div>
+            <div class="ficha" data-player-slug="pedri">
+                <div class="foto"><img src="pedri.webp" alt="Pedri" onerror="this.style.display='none'"><span>P</span></div>
                 <div class="info">
                     <div class="dorsal">8</div>
                     <h2>Pedro González López "Pedri"</h2>
@@ -582,15 +296,13 @@
                         <div>Asist.<span>2</span></div>
                         <div>G+A<span class="rojo">3</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- FERMÍN -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="fermin.webp" alt="Fermín López">
-                </div>
+            <div class="ficha" data-player-slug="fermin-lopez">
+                <div class="foto"><img src="fermin.webp" alt="Fermín López" onerror="this.style.display='none'"><span>FL</span></div>
                 <div class="info">
                     <div class="dorsal">7</div>
                     <h2>Fermín López Marín</h2>
@@ -609,15 +321,13 @@
                         <div>Asist.<span>3</span></div>
                         <div>G+A<span class="rojo">7</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- DANI OLMO -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="olmo.webp" alt="Dani Olmo">
-                </div>
+            <div class="ficha" data-player-slug="dani-olmo">
+                <div class="foto"><img src="olmo.webp" alt="Dani Olmo" onerror="this.style.display='none'"><span>DO</span></div>
                 <div class="info">
                     <div class="dorsal">20</div>
                     <h2>Daniel Olmo Carvajal "Dani Olmo"</h2>
@@ -633,19 +343,16 @@
                     <div class="stats-temporada">
                         <div>Partidos<span>9</span></div>
                         <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>—</span>3</div>
+                        <div>Asist.<span>3</span></div>
                         <div>G+A<span class="rojo">4</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 · Asistencias no confirmadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- RODRI -->
-            <div class="ficha">
-                <img src="rodri.jpg" alt="Rodri">
-                <div class="foto">
-                    <span>R</span>
-                </div>
+            <div class="ficha" data-player-slug="rodri">
+                <div class="foto"><img src="rodri.jpg" alt="Rodri" onerror="this.style.display='none'"><span>R</span></div>
                 <div class="info">
                     <div class="dorsal">16</div>
                     <h2>Rodrigo Hernández Cascante "Rodri"</h2>
@@ -664,16 +371,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">1</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref/FotMob)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- GAVI -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="gavi.jpg" alt="Gavi">
-                    <span>G</span>
-                </div>
+            <div class="ficha" data-player-slug="gavi">
+                <div class="foto"><img src="gavi.jpg" alt="Gavi" onerror="this.style.display='none'"><span>G</span></div>
                 <div class="info">
                     <div class="dorsal">6</div>
                     <h2>Pablo Martín Páez Gavira "Gavi"</h2>
@@ -692,16 +396,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- FRENKIE DE JONG -->
-            <div class="ficha">
-                <div class="foto">      
-                <img src="Joung.jpg" alt="Frenkie de Joung">
-                    <span>FJ</span>
-                </div>
+            <div class="ficha" data-player-slug="frenkie-de-jong">
+                <div class="foto"><img src="Joung.jpg" alt="Frenkie de Jong" onerror="this.style.display='none'"><span>FJ</span></div>
                 <div class="info">
                     <div class="dorsal">21</div>
                     <h2>Frenkie de Jong</h2>
@@ -720,16 +421,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- MARC BERNAL -->
-            <div class="ficha">
-                <div class="foto">
-                    
-                    <span>MB</span>
-                </div>
+            <div class="ficha" data-player-slug="marc-bernal">
+                <div class="foto"><span>MB</span></div>
                 <div class="info">
                     <div class="dorsal">22</div>
                     <h2>Marc Bernal</h2>
@@ -748,21 +446,17 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
-
         </div>
 
-        <!-- ==================== DEFENSAS ==================== -->
+        <!-- DEFENSAS -->
         <h2 class="seccion-titulo">🛡️ Defensas</h2>
         <div class="jugadores-grid">
-
             <!-- PAU CUBARSÍ -->
-            <div class="ficha">
-                <div class="foto">
-                    <span>PC</span>
-                </div>
+            <div class="ficha" data-player-slug="pau-cubarsi">
+                <div class="foto"><span>PC</span></div>
                 <div class="info">
                     <div class="dorsal">5</div>
                     <h2>Pau Cubarsí Paredes</h2>
@@ -781,15 +475,13 @@
                         <div>Asist.<span>2</span></div>
                         <div>G+A<span class="rojo">2</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- ERIC GARCÍA -->
-            <div class="ficha">
-                <div class="foto">
-                    <span>EG</span>
-                </div>
+            <div class="ficha" data-player-slug="eric-garcia">
+                <div class="foto"><span>EG</span></div>
                 <div class="info">
                     <div class="dorsal">24</div>
                     <h2>Eric García Martret</h2>
@@ -808,16 +500,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">1</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- XAVI ESPART -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="xavi.jpg" alt="Xavier Espart">
-                    <span>XE</span>
-                </div>
+            <div class="ficha" data-player-slug="xavi-espart">
+                <div class="foto"><img src="xavi.jpg" alt="Xavier Espart" onerror="this.style.display='none'"><span>XE</span></div>
                 <div class="info">
                     <div class="dorsal">12</div>
                     <h2>Xavier Espart Font "Xavi Espart"</h2>
@@ -836,16 +525,13 @@
                         <div>Asist.<span>2</span></div>
                         <div>G+A<span class="rojo">3</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- JOÃO CANCELO -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="cancelo.jpg" alt="João Cancelo"> 
-                    <span>JC</span>
-                </div>
+            <div class="ficha" data-player-slug="joao-cancelo">
+                <div class="foto"><img src="cancelo.jpg" alt="João Cancelo" onerror="this.style.display='none'"><span>JC</span></div>
                 <div class="info">
                     <div class="dorsal">2</div>
                     <h2>João Cancelo</h2>
@@ -864,16 +550,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- ALEJANDRO BALDE -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="balde.jpg" alt="Alejandro Balde"> 
-                    <span>AB</span>
-                </div>
+            <div class="ficha" data-player-slug="alejandro-balde">
+                <div class="foto"><img src="balde.jpg" alt="Alejandro Balde" onerror="this.style.display='none'"><span>AB</span></div>
                 <div class="info">
                     <div class="dorsal">3</div>
                     <h2>Alejandro Balde</h2>
@@ -887,21 +570,18 @@
                         <p><strong>Posición:</strong> Lateral izquierdo</p>
                     </div>
                     <div class="stats-temporada">
-                        <div>Partidos<span>—</span></div>
-                        <div>Goles<span class="rojo">—</span></div>
-                        <div>Asist.<span>—</span></div>
-                        <div>G+A<span class="rojo">—</span></div>
+                        <div>Partidos<span>3</span></div>
+                        <div>Goles<span class="rojo">0</span></div>
+                        <div>Asist.<span>0</span></div>
+                        <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- BRIAN FARIÑAS -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="brian.jpg" alt="Brian Fariñas">
-                    <span>BF</span>
-                </div>
+            <div class="ficha" data-player-slug="brian-farinas">
+                <div class="foto"><img src="brian.jpg" alt="Brian Fariñas" onerror="this.style.display='none'"><span>BF</span></div>
                 <div class="info">
                     <div class="dorsal">4</div>
                     <h2>Brian Fariñas</h2>
@@ -915,21 +595,18 @@
                         <p><strong>Posición:</strong> Defensa</p>
                     </div>
                     <div class="stats-temporada">
-                        <div>Partidos<span>—</span></div>
-                        <div>Goles<span class="rojo">—</span></div>
-                        <div>Asist.<span>—</span></div>
-                        <div>G+A<span class="rojo">—</span></div>
+                        <div>Partidos<span>1</span></div>
+                        <div>Goles<span class="rojo">0</span></div>
+                        <div>Asist.<span>0</span></div>
+                        <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- ANDREAS CHRISTENSEN -->
-            <div class="ficha">
-                <div class="foto">
-                 <img src="andreas.jpg" alt="Andreas Christensen">
-                    <span>AC</span>
-                </div>
+            <div class="ficha" data-player-slug="andreas-christensen">
+                <div class="foto"><img src="andreas.jpg" alt="Andreas Christensen" onerror="this.style.display='none'"><span>AC</span></div>
                 <div class="info">
                     <div class="dorsal">15</div>
                     <h2>Andreas Christensen</h2>
@@ -948,16 +625,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- GERARD MARTÍN -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="martin.jpg" alt="Gerard Martín">
-                    <span>GM</span>
-                </div>
+            <div class="ficha" data-player-slug="gerard-martin">
+                <div class="foto"><img src="martin.jpg" alt="Gerard Martín" onerror="this.style.display='none'"><span>GM</span></div>
                 <div class="info">
                     <div class="dorsal">18</div>
                     <h2>Gerard Martín</h2>
@@ -976,16 +650,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- JULES KOUNDE -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="jules.jpg" alt="Jules Kounde">
-                    <span>JK</span>
-                </div>
+            <div class="ficha" data-player-slug="jules-kounde">
+                <div class="foto"><img src="jules.jpg" alt="Jules Kounde" onerror="this.style.display='none'"><span>JK</span></div>
                 <div class="info">
                     <div class="dorsal">23</div>
                     <h2>Jules Kounde</h2>
@@ -1004,22 +675,17 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
-
         </div>
 
-        <!-- ==================== PORTEROS ==================== -->
+        <!-- PORTEROS -->
         <h2 class="seccion-titulo">🧤 Porteros</h2>
         <div class="jugadores-grid">
-
             <!-- JOAN GARCIA -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="joan.jpg" alt="Joan Garcia">
-                    <span>JG</span>
-                </div>
+            <div class="ficha" data-player-slug="joan-garcia">
+                <div class="foto"><img src="joan.jpg" alt="Joan Garcia" onerror="this.style.display='none'"><span>JG</span></div>
                 <div class="info">
                     <div class="dorsal">1</div>
                     <h2>Joan Garcia</h2>
@@ -1038,16 +704,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- SZCZĘSNY -->
-            <div class="ficha">
-                <div class="foto">
-                       <img src="szc.jpg" alt="Wojciech Szczęsny">
-                    <span>WS</span>
-                </div>
+            <div class="ficha" data-player-slug="wojciech-szczesny">
+                <div class="foto"><img src="szc.jpg" alt="Wojciech Szczęsny" onerror="this.style.display='none'"><span>WS</span></div>
                 <div class="info">
                     <div class="dorsal">13</div>
                     <h2>Wojciech Szczęsny</h2>
@@ -1066,16 +729,13 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
 
             <!-- DOMINIK LIVAKOVIĆ -->
-            <div class="ficha">
-                <div class="foto">
-                    <img src="liva.jpg" alt="Dominik Livaković">
-                    <span>DL</span>
-                </div>
+            <div class="ficha" data-player-slug="dominik-livakovic">
+                <div class="foto"><img src="liva.jpg" alt="Dominik Livaković" onerror="this.style.display='none'"><span>DL</span></div>
                 <div class="info">
                     <div class="dorsal">25</div>
                     <h2>Dominik Livaković</h2>
@@ -1094,215 +754,46 @@
                         <div>Asist.<span>0</span></div>
                         <div>G+A<span class="rojo">0</span></div>
                     </div>
-                    <p class="nota-stats">Sin datos de LaLiga 2026/27 en fuentes consultadas</p>
+                    <p class="nota-stats">Cargando desde SportScore...</p>
                 </div>
             </div>
-
         </div>
 
-        <!-- ==================== TABLA RESUMEN ==================== -->
+        <!-- TABLA RESUMEN (se mantiene igual, solo se actualizarán las celdas si la API responde) -->
         <div class="tabla-resumen">
             <h2>📊 Resumen de goles y asistencias · LaLiga 2026/27</h2>
             <table>
                 <thead>
-                    <tr>
-                        <th>Jugador</th>
-                        <th>Partidos</th>
-                        <th>Goles</th>
-                        <th>Asistencias</th>
-                        <th>G+A</th>
-                    </tr>
+                    <tr><th>Jugador</th><th>Partidos</th><th>Goles</th><th>Asistencias</th><th>G+A</th></tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="jugador-nombre">Raphinha</td>
-                        <td>9</td>
-                        <td class="goles">13</td>
-                        <td class="asist">3</td>
-                        <td class="ga">16</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Lamine Yamal</td>
-                        <td>10</td>
-                        <td class="goles">8</td>
-                        <td class="asist">6</td>
-                        <td class="ga">14</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Fermín López</td>
-                        <td>9</td>
-                        <td class="goles">4</td>
-                        <td class="asist">3</td>
-                        <td class="ga">7</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Anthony Gordon</td>
-                        <td>10</td>
-                        <td class="goles">2</td>
-                        <td class="asist">4</td>
-                        <td class="ga">6</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Karim Adeyemi</td>
-                        <td>9</td>
-                        <td class="goles">2</td>
-                        <td class="asist">2</td>
-                        <td class="ga">4</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Pedri</td>
-                        <td>10</td>
-                        <td class="goles">1</td>
-                        <td class="asist">2</td>
-                        <td class="ga">3</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Xavi Espart</td>
-                        <td>8</td>
-                        <td class="goles">1</td>
-                        <td class="asist">2</td>
-                        <td class="ga">3</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Pau Cubarsí</td>
-                        <td>7</td>
-                        <td class="goles">0</td>
-                        <td class="asist">2</td>
-                        <td class="ga">2</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Rodri</td>
-                        <td>9</td>
-                        <td class="goles">1</td>
-                        <td class="asist">0</td>
-                        <td class="ga">1</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Eric García</td>
-                        <td>8</td>
-                        <td class="goles">1</td>
-                        <td class="asist">0</td>
-                        <td class="ga">1</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Dani Olmo</td>
-                        <td>9</td>
-                        <td class="goles">1</td>
-                        <td class="asist">3</td>
-                        <td class="ga">4</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Marc Bernal</td>
-                        <td>8</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Gerard Martín</td>
-                        <td>9</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">João Cancelo</td>
-                        <td>7</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Jules Kounde</td>
-                        <td>6</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Andreas Christensen</td>
-                        <td>6</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Joan Garcia (POR)</td>
-                        <td>9</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Gabriel Jesus</td>
-                        <td>9</td>
-                        <td class="goles">4</td>
-                        <td class="asist">1</td>
-                        <td class="ga">5</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Roony Bardghji</td>
-                        <td>3</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</d>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Jesse Bisiu</td>
-                        <td>0</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Hamza Abdelkarim</td>
-                        <td>1</td>
-                        <td class="goles">0</td>
-                        <td class="asist">1</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Gavi</td>
-                        <td>10</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Frenkie de Jong</td>
-                        <td>3</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Alejandro Balde</td>
-                        <td>3</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Brian Fariñas</td>
-                        <td>1</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Szczęsny (POR)</td>
-                        <td>0</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
-                    <tr>
-                        <td class="jugador-nombre">Dominik Livaković (POR)</td>
-                        <td>0</td>
-                        <td class="goles">0</td>
-                        <td class="asist">0</td>
-                        <td class="ga">0</td>
-                    </tr>
+                <tbody id="tabla-resumen-body">
+                    <tr data-player-slug="raphinha"><td class="jugador-nombre">Raphinha</td><td>9</td><td class="goles">13</td><td class="asist">3</td><td class="ga">16</td></tr>
+                    <tr data-player-slug="lamine-yamal"><td class="jugador-nombre">Lamine Yamal</td><td>10</td><td class="goles">8</td><td class="asist">6</td><td class="ga">14</td></tr>
+                    <tr data-player-slug="fermin-lopez"><td class="jugador-nombre">Fermín López</td><td>9</td><td class="goles">4</td><td class="asist">3</td><td class="ga">7</td></tr>
+                    <tr data-player-slug="anthony-gordon"><td class="jugador-nombre">Anthony Gordon</td><td>10</td><td class="goles">2</td><td class="asist">4</td><td class="ga">6</td></tr>
+                    <tr data-player-slug="gabriel-jesus"><td class="jugador-nombre">Gabriel Jesus</td><td>9</td><td class="goles">4</td><td class="asist">1</td><td class="ga">5</td></tr>
+                    <tr data-player-slug="karim-adeyemi"><td class="jugador-nombre">Karim Adeyemi</td><td>9</td><td class="goles">2</td><td class="asist">2</td><td class="ga">4</td></tr>
+                    <tr data-player-slug="dani-olmo"><td class="jugador-nombre">Dani Olmo</td><td>9</td><td class="goles">1</td><td class="asist">3</td><td class="ga">4</td></tr>
+                    <tr data-player-slug="pedri"><td class="jugador-nombre">Pedri</td><td>10</td><td class="goles">1</td><td class="asist">2</td><td class="ga">3</td></tr>
+                    <tr data-player-slug="xavi-espart"><td class="jugador-nombre">Xavi Espart</td><td>8</td><td class="goles">1</td><td class="asist">2</td><td class="ga">3</td></tr>
+                    <tr data-player-slug="pau-cubarsi"><td class="jugador-nombre">Pau Cubarsí</td><td>7</td><td class="goles">0</td><td class="asist">2</td><td class="ga">2</td></tr>
+                    <tr data-player-slug="rodri"><td class="jugador-nombre">Rodri</td><td>9</td><td class="goles">1</td><td class="asist">0</td><td class="ga">1</td></tr>
+                    <tr data-player-slug="eric-garcia"><td class="jugador-nombre">Eric García</td><td>8</td><td class="goles">1</td><td class="asist">0</td><td class="ga">1</td></tr>
+                    <tr data-player-slug="hamza-abdelkarim"><td class="jugador-nombre">Hamza Abdelkarim</td><td>1</td><td class="goles">0</td><td class="asist">1</td><td class="ga">1</td></tr>
+                    <tr data-player-slug="marc-bernal"><td class="jugador-nombre">Marc Bernal</td><td>8</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="gerard-martin"><td class="jugador-nombre">Gerard Martín</td><td>9</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="joao-cancelo"><td class="jugador-nombre">João Cancelo</td><td>7</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="jules-kounde"><td class="jugador-nombre">Jules Kounde</td><td>6</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="andreas-christensen"><td class="jugador-nombre">Andreas Christensen</td><td>6</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="joan-garcia"><td class="jugador-nombre">Joan Garcia (POR)</td><td>9</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="roony-bardghji"><td class="jugador-nombre">Roony Bardghji</td><td>3</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="jesse-bisiwu"><td class="jugador-nombre">Jesse Bisiwu</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="gavi"><td class="jugador-nombre">Gavi</td><td>10</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="frenkie-de-jong"><td class="jugador-nombre">Frenkie de Jong</td><td>3</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="alejandro-balde"><td class="jugador-nombre">Alejandro Balde</td><td>3</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="brian-farinas"><td class="jugador-nombre">Brian Fariñas</td><td>1</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="wojciech-szczesny"><td class="jugador-nombre">Szczęsny (POR)</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
+                    <tr data-player-slug="dominik-livakovic"><td class="jugador-nombre">Dominik Livaković (POR)</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1310,7 +801,163 @@
 
     <footer>
         <p>Hecho por <strong>Jorge Pradas Aguiar</strong></p>
+        <p style="margin-top:8px; font-size:0.85rem;">
+            <a href="https://sportscore.com/" rel="dofollow" target="_blank">Powered by SportScore</a>
+        </p>
     </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPT DE CONEXIÓN A SPORTSCORE (no modifica el diseño)      -->
+    <!-- ============================================================ -->
+    <script>
+    (function() {
+        'use strict';
+
+        // Mapeo de slugs: los que ya conocemos de la doc de SportScore
+        // Si algún slug no existe, la API devolverá 404 y se mantienen los datos del HTML.
+        const PLAYER_SLUGS = {
+            'lamine-yamal': 'lamine-yamal',
+            'raphinha': 'raphinha',
+            'anthony-gordon': 'anthony-gordon',
+            'karim-adeyemi': 'karim-adeyemi',
+            'gabriel-jesus': 'gabriel-jesus',
+            'roony-bardghji': 'roony-bardghji',
+            'jesse-bisiwu': 'jesse-bisiwu',
+            'hamza-abdelkarim': 'hamza-abdelkarim',
+            'pedri': 'pedri',
+            'fermin-lopez': 'fermin-lopez',
+            'dani-olmo': 'dani-olmo',
+            'rodri': 'rodri',
+            'gavi': 'gavi',
+            'frenkie-de-jong': 'frenkie-de-jong',
+            'marc-bernal': 'marc-bernal',
+            'pau-cubarsi': 'pau-cubarsi',
+            'eric-garcia': 'eric-garcia',
+            'xavi-espart': 'xavi-espart',
+            'joao-cancelo': 'joao-cancelo',
+            'alejandro-balde': 'alejandro-balde',
+            'brian-farinas': 'brian-farinas',
+            'andreas-christensen': 'andreas-christensen',
+            'gerard-martin': 'gerard-martin',
+            'jules-kounde': 'jules-kounde',
+            'joan-garcia': 'joan-garcia',
+            'wojciech-szczesny': 'wojciech-szczesny',
+            'dominik-livakovic': 'dominik-livakovic'
+        };
+
+        // Base de la API de SportScore (según la doc: https://sportscore.com)
+        const API_BASE = 'https://sportscore.com/api';
+
+        /**
+         * Llama a SportScore para obtener estadísticas de un jugador.
+         * Endpoint: /api/player/football/{slug}  (según sportscore-py get_player)
+         * @param {string} slug - Slug del jugador
+         * @returns {Promise<object|null>} Datos del jugador o null si falla
+         */
+        async function fetchPlayerStats(slug) {
+            const url = `${API_BASE}/player/football/${slug}`;
+            try {
+                const res = await fetch(url, {
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!res.ok) return null;
+                return await res.json();
+            } catch (e) {
+                return null;
+            }
+        }
+
+        /**
+         * Extrae goles, asistencias y partidos de la respuesta de SportScore.
+         * La estructura exacta no está documentada; probamos varias rutas comunes.
+         */
+        function extractStats(data) {
+            if (!data) return null;
+
+            // Posibles rutas donde SportScore podría poner los totales de temporada.
+            // Si en el futuro ves la respuesta real, ajusta estas rutas.
+            const candidates = [
+                data.stats?.season,      // { stats: { season: { goals, assists, matches } } }
+                data.season_stats,
+                data.stats,
+                data,
+            ];
+
+            for (const obj of candidates) {
+                if (!obj || typeof obj !== 'object') continue;
+                const goals = obj.goals ?? obj.goles ?? obj.total_goals;
+                const assists = obj.assists ?? obj.asistencias ?? obj.total_assists;
+                const matches = obj.matches ?? obj.appearances ?? obj.partidos ?? obj.games;
+
+                // Necesitamos al menos goles y asistencias para pintar algo útil
+                if (goals !== undefined && assists !== undefined) {
+                    return {
+                        goals: Number(goals),
+                        assists: Number(assists),
+                        matches: matches !== undefined ? Number(matches) : null
+                    };
+                }
+            }
+            return null;
+        }
+
+        /** Actualiza los spans de estadísticas dentro de una ficha */
+        function updateCardStats(ficha, s) {
+            const spans = ficha.querySelectorAll('.stats-temporada div span');
+            if (spans.length < 4) return;
+            if (s.matches !== null) spans[0].textContent = s.matches;
+            spans[1].textContent = s.goals;
+            spans[2].textContent = s.assists;
+            spans[3].textContent = s.goals + s.assists;
+
+            const nota = ficha.querySelector('.nota-stats');
+            if (nota) nota.textContent = 'Datos en vivo de SportScore';
+        }
+
+        /** Actualiza la fila correspondiente en la tabla resumen */
+        function updateSummaryRow(slug, s) {
+            const row = document.querySelector(`#tabla-resumen-body tr[data-player-slug="${slug}"]`);
+            if (!row) return;
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 5) return;
+            if (s.matches !== null) cells[1].textContent = s.matches;
+            cells[2].textContent = s.goals;
+            cells[3].textContent = s.assists;
+            cells[4].textContent = s.goals + s.assists;
+        }
+
+        /** Recorre todas las fichas y actualiza las que tengan data-player-slug */
+        async function refreshAll() {
+            const fichas = document.querySelectorAll('.ficha[data-player-slug]');
+            const promesas = [];
+
+            for (const ficha of fichas) {
+                const slugKey = ficha.dataset.playerSlug;
+                const apiSlug = PLAYER_SLUGS[slugKey] || slugKey;
+
+                const p = (async () => {
+                    const data = await fetchPlayerStats(apiSlug);
+                    const s = extractStats(data);
+                    if (!s) return; // si no hay datos, se mantiene el HTML estático
+                    updateCardStats(ficha, s);
+                    updateSummaryRow(slugKey, s);
+                })();
+
+                promesas.push(p);
+            }
+
+            // Esperamos a que terminen todas (pero no bloqueamos la UI)
+            await Promise.allSettled(promesas);
+        }
+
+        // Lanzar después de que el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', refreshAll);
+        } else {
+            refreshAll();
+        }
+    })();
+    </script>
 
 </body>
 </html>
