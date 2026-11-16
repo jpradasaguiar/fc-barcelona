@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - FC Barcelona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #004d98 0%, #a50044 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.activo {
+            background: rgba(255,255,255,0.25);
+        }
+
+        header {
+            background: linear-gradient(135deg, #004d98 0%, #a50044 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* TARJETAS DE CONTENIDO */
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #a50044;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            background: linear-gradient(90deg, #004d98, #a50044);
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .card .card-body {
+            padding: 25px 20px;
+        }
+
+        .card .card-body p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .card .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card .card-body ul {
+            margin: 10px 0 0 20px;
+        }
+
+        .card .card-body ul li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .card .card-body ul li strong {
+            color: #004d98;
+        }
+
+        /* PERFIL / AUTOR */
+        .perfil {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .perfil .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #004d98, #a50044);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .perfil .perfil-info h3 {
+            color: #004d98;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .perfil .perfil-info .rol {
+            display: inline-block;
+            background: #a50044;
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .perfil .perfil-info p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* TABLA DE FUENTES */
+        .tabla-fuentes {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .tabla-fuentes th,
+        .tabla-fuentes td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .tabla-fuentes th {
+            background: #f4f4f9;
+            color: #004d98;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .tabla-fuentes tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tabla-fuentes tr:hover td {
+            background: rgba(0,77,152,0.05);
+        }
+
+        footer {
+            background: #004d98;
+            color: #fff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .perfil {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tabla-fuentes th,
+            .tabla-fuentes td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">⚽ FC Barcelona</div>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="jugadores.html">Jugadores</a></li>
+            <li><a href="acerca.html" class="activo">Acerca de</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Acerca de este proyecto</h1>
+        <p>Conoce al autor y las fuentes de datos · Temporada 2026/27</p>
+    </header>
+
+    <div class="container">
+
+        <!-- SOBRE MÍ -->
+        <div class="card">
+            <h2>👤 Sobre mí</h2>
+            <div class="card-body">
+                <div class="perfil">
+                    <div class="avatar">JP</div>
+                    <div class="perfil-info">
+                        <h3>Jorge Pradas Aguiar</h3>
+                        <span class="rol">Creador y desarrollador</span>
+                        <p>
+                            Soy un apasionado del fútbol y del FC Barcelona. He creado esta página como
+                            proyecto personal para seguir de cerca la actualidad de la plantilla y
+                            practicar desarrollo web con HTML y CSS. Me gusta cuidar el diseño y
+                            mantener la información clara, ordenada y actualizada.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOBRE EL PROYECTO -->
+        <div class="card">
+            <h2>📋 Sobre el proyecto</h2>
+            <div class="card-body">
+                <p>
+                    <strong>Jugadores FC Barcelona</strong> es una web estática que reúne las fichas
+                    de los jugadores del primer equipo con sus datos biográficos y sus estadísticas
+                    de la temporada 2026/27 en LaLiga (partidos, goles, asistencias y contribución
+                    total de gol).
+                </p>
+                <p>
+                    La página está organizada por líneas (atacantes, centrocampistas, defensas y
+                    porteros) para que puedas encontrar rápidamente a cada jugador. Además, incluye
+                    una tabla resumen con los totales de G+A de toda la plantilla.
+                </p>
+                <ul>
+                    <li><strong>Tecnologías:</strong> HTML5 y CSS3, sin frameworks ni dependencias externas.</li>
+                    <li><strong>Diseño:</strong> responsive, con la identidad visual azulgrana del club.</li>
+                    <li><strong>Objetivo:</strong> ofrecer una consulta rápida y visual de los datos del equipo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FUENTES DE DATOS -->
+        <div class="card">
+            <h2>📊 Fuentes de datos</h2>
+            <div class="card-body">
+                <p>
+                    Las estadísticas que ves en las fichas y en la tabla resumen proceden de fuentes
+                    públicas y se actualizan manualmente. Las principales referencias son:
+                </p>
+                <table class="tabla-fuentes">
+                    <thead>
+                        <tr>
+                            <th>Fuente</th>
+                            <th>Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>LaLiga.com</strong></td>
+                            <td>Datos oficiales de goles, partidos y clasificaciones.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FBref</strong></td>
+                            <td>Estadísticas detalladas y verificación de cifras.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sporting News / StatMuse</strong></td>
+                            <td>Consultas rápidas de goleadores y asistentes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 15px;">
+                    Nota: al tratarse de una web estática sin conexión a APIs en vivo, los datos
+                    pueden tener un ligero desfase respecto a la jornada más reciente.
+                </p>
+            </div>
+        </div>
+
+        <!-- AVISO / CONTACTO -->
+        <div class="card">
+            <h2>📬 Contacto y aviso</h2>
+            <div class="card-body">
+                <p>
+                    Si detectas algún error en los datos o quieres sugerir una mejora, puedes
+                    escribirme a través de la página de <a href="contacto.html" style="color:#a50044; font-weight:600;">Contacto</a>.
+                </p>
+                <p>
+                    Esta web es un proyecto personal sin ánimo de lucro y no está afiliada
+                    oficialmente al FC Barcelona. Los escudos y nombres se usan únicamente con
+                    fines informativos y divulgativos.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Hecho por <strong>Jorge Pradas Aguiar</strong></p>
+    </footer>
+
+</body>
+</html>
