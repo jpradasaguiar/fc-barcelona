@@ -3,48 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jugadores - FC Barcelona</title>
+    <title>Rivales - PSG, Bayern, Real Madrid, Girona, Atlético y Athletic</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f4f4f9; color: #333; line-height: 1.6; }
+
         nav { background: linear-gradient(90deg, #004d98 0%, #a50044 100%); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         nav .logo { color: #fff; font-size: 1.3rem; font-weight: bold; }
         nav ul { list-style: none; display: flex; gap: 10px; flex-wrap: wrap; }
         nav ul li a { color: #fff; text-decoration: none; font-weight: 600; padding: 8px 15px; border-radius: 20px; transition: background 0.3s; }
         nav ul li a:hover, nav ul li a.activo { background: rgba(255,255,255,0.25); }
+
         header { background: linear-gradient(135deg, #004d98 0%, #a50044 100%); color: #fff; text-align: center; padding: 60px 20px; }
         header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .seccion-titulo { margin: 45px 0 20px; padding: 12px 20px; background: linear-gradient(90deg, #004d98, #a50044); color: #fff; border-radius: 12px; font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .seccion-titulo:first-of-type { margin-top: 0; }
+
+        .equipo-titulo {
+            margin: 50px 0 25px;
+            padding: 20px 25px;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        }
+        .equipo-titulo.psg { background: linear-gradient(90deg, #004170 0%, #da291c 100%); }
+        .equipo-titulo.bayern { background: linear-gradient(90deg, #dc052d 0%, #0066b2 100%); }
+        .equipo-titulo.madrid { background: linear-gradient(90deg, #ffffff 0%, #00529f 50%, #febe10 100%); color: #1a1a1a; }
+        .equipo-titulo.girona { background: linear-gradient(90deg, #cd2534 0%, #ffffff 100%); color: #1a1a1a; }
+        .equipo-titulo.atletico { background: linear-gradient(90deg, #cb3524 0%, #ffffff 50%, #1a2b5e 100%); color: #1a1a1a; }
+        .equipo-titulo.athletic { background: linear-gradient(90deg, #ee2523 0%, #ffffff 100%); color: #1a1a1a; }
+        .equipo-titulo:first-of-type { margin-top: 0; }
+
+        .seccion-titulo { margin: 35px 0 20px; padding: 12px 20px; background: #fff; color: #333; border-radius: 12px; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 6px solid #a50044; }
+
         .jugadores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .ficha { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; border-top: 5px solid #a50044; }
+
+        .ficha { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
         .ficha:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .ficha .foto { width: 100%; height: 260px; background: linear-gradient(135deg, #004d98, #a50044); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 4rem; font-weight: bold; position: relative; overflow: hidden; }
-        .ficha .foto img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
-        .ficha .info { padding: 20px; }
-        .ficha h2 { color: #004d98; font-size: 1.3rem; margin-bottom: 5px; }
-        .ficha .posicion { display: inline-block; background: #a50044; color: #fff; font-size: 0.8rem; padding: 3px 10px; border-radius: 15px; margin-bottom: 12px; font-weight: 600; }
-        .ficha .dorsal { float: right; background: #004d98; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; }
-        .ficha .datos { font-size: 0.9rem; color: #555; margin-top: 10px; }
+
+        /* PSG */
+        .ficha.psg { border-top: 5px solid #004170; }
+        .ficha.psg .dorsal { background: #004170; }
+        .ficha.psg h2 { color: #004170; }
+        .ficha.psg .posicion { background: #da291c; }
+        .ficha.psg .foto { background: linear-gradient(135deg, #004170, #da291c); }
+
+        /* Bayern */
+        .ficha.bayern { border-top: 5px solid #dc052d; }
+        .ficha.bayern .dorsal { background: #dc052d; }
+        .ficha.bayern h2 { color: #dc052d; }
+        .ficha.bayern .posicion { background: #0066b2; }
+        .ficha.bayern .foto { background: linear-gradient(135deg, #dc052d, #0066b2); }
+
+        /* Real Madrid */
+        .ficha.madrid { border-top: 5px solid #00529f; }
+        .ficha.madrid .dorsal { background: #00529f; }
+        .ficha.madrid h2 { color: #00529f; }
+        .ficha.madrid .posicion { background: #febe10; color: #1a1a1a; }
+        .ficha.madrid .foto { background: linear-gradient(135deg, #00529f, #febe10); }
+
+        /* Girona */
+        .ficha.girona { border-top: 5px solid #cd2534; }
+        .ficha.girona .dorsal { background: #cd2534; }
+        .ficha.girona h2 { color: #cd2534; }
+        .ficha.girona .posicion { background: #1a1a1a; }
+        .ficha.girona .foto { background: linear-gradient(135deg, #cd2534, #ffffff); color: #1a1a1a; }
+
+        /* Atlético */
+        .ficha.atletico { border-top: 5px solid #cb3524; }
+        .ficha.atletico .dorsal { background: #cb3524; }
+        .ficha.atletico h2 { color: #cb3524; }
+        .ficha.atletico .posicion { background: #1a2b5e; }
+        .ficha.atletico .foto { background: linear-gradient(135deg, #cb3524, #1a2b5e); }
+
+        /* Athletic */
+        .ficha.athletic { border-top: 5px solid #ee2523; }
+        .ficha.athletic .dorsal { background: #ee2523; }
+        .ficha.athletic h2 { color: #ee2523; }
+        .ficha.athletic .posicion { background: #1a1a1a; }
+        .ficha.athletic .foto { background: linear-gradient(135deg, #ee2523, #ffffff); color: #1a1a1a; }
+
+        .ficha .foto { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem; font-weight: bold; position: relative; overflow: hidden; }
+
+        .ficha .info { padding: 18px; }
+        .ficha h2 { font-size: 1.15rem; margin-bottom: 5px; }
+        .ficha .posicion { display: inline-block; color: #fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 15px; margin-bottom: 10px; font-weight: 600; }
+        .ficha .dorsal { float: right; color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; }
+        .ficha .datos { font-size: 0.85rem; color: #555; margin-top: 10px; }
         .ficha .datos strong { color: #333; }
-        .ficha .stats-temporada { margin-top: 15px; padding: 12px 10px; background: linear-gradient(135deg, rgba(0,77,152,0.08), rgba(165,0,68,0.08)); border-radius: 12px; display: flex; justify-content: space-around; text-align: center; gap: 10px; }
-        .ficha .stats-temporada div { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .ficha .stats-temporada div span { display: block; font-size: 1.6rem; font-weight: 800; color: #004d98; line-height: 1.3; }
-        .ficha .stats-temporada div span.rojo { color: #a50044; }
-        .ficha .nota-stats { font-size: 0.7rem; color: #999; text-align: center; margin-top: 6px; font-style: italic; }
-        .tabla-resumen { margin-top: 50px; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 5px solid #004d98; }
-        .tabla-resumen h2 { background: linear-gradient(90deg, #004d98, #a50044); color: #fff; padding: 15px 20px; font-size: 1.2rem; text-align: center; }
-        .tabla-resumen table { width: 100%; border-collapse: collapse; }
-        .tabla-resumen th, .tabla-resumen td { padding: 12px 15px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9rem; }
-        .tabla-resumen th { background: #f4f4f9; color: #004d98; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
-        .tabla-resumen tr:last-child td { border-bottom: none; }
-        .tabla-resumen tr:hover td { background: rgba(0,77,152,0.05); }
-        .tabla-resumen td.jugador-nombre { text-align: left; font-weight: 600; color: #333; }
-        .tabla-resumen td.goles, .tabla-resumen td.ga { font-weight: 800; color: #a50044; }
-        .tabla-resumen td.asist { font-weight: 700; color: #004d98; }
+
         footer { background: #004d98; color: #fff; text-align: center; padding: 25px 20px; margin-top: 50px; font-size: 0.95rem; }
-        @media (max-width: 700px) { nav { flex-direction: column; gap: 10px; } nav ul { justify-content: center; } header h1 { font-size: 1.8rem; } .tabla-resumen th, .tabla-resumen td { padding: 8px 6px; font-size: 0.8rem; } .seccion-titulo { font-size: 1.1rem; } }
+
+        @media (max-width: 700px) {
+            nav { flex-direction: column; gap: 10px; }
+            nav ul { justify-content: center; }
+            header h1 { font-size: 1.8rem; }
+            .equipo-titulo { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
@@ -53,722 +112,1886 @@
         <div class="logo">⚽ FC Barcelona</div>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="jugadores.html" class="activo">Jugadores</a></li>
-             <li><a href="rivales.html">Rivales</a></li>
+            <li><a href="jugadores.html">Jugadores</a></li>
+            <li><a href="rivales.html" class="activo">Rivales</a></li>
             <li><a href="acerca.html">Acerca de</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
 
     <header>
-        <h1>Jugadores del FC Barcelona</h1>
-        <p>Plantilla completa del primer equipo · Temporada 2026/27</p>
+        <h1>Rivales nacionales e internacionales</h1>
+        <p>Plantillas de Real Madrid, Girona, Atlético, Athletic, PSG y Bayern · Temporada 2026/27</p>
     </header>
 
     <div class="container">
 
-        <!-- ATACANTES -->
-        <h2 class="seccion-titulo">⚡ Atacantes</h2>
-        <div class="jugadores-grid">
-            <div class="ficha">
-                <div class="foto"><img src="lamine.jpg" alt="Lamine Yamal" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">10</div>
-                    <h2>Lamine Yamal Nasraoui Ebana</h2>
-                    <span class="posicion">Extremo derecho</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 13/07/2007</p>
-                        <p><strong>Lugar:</strong> Esplugues de Llobregat, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,83 m</p>
-                        <p><strong>Peso:</strong> 72 kg</p>
-                        <p><strong>Posición:</strong> Delantero / Extremo derecho</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>12</span></div>
-                        <div>Goles<span class="rojo">10</span></div>
-                        <div>Asist.<span>8</span></div>
-                        <div>G+A<span class="rojo">18</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref/Sporting News)</p>
-                </div>
-            </div>
+        <!-- ==================== REAL MADRID ==================== -->
+        <h2 class="equipo-titulo madrid">⚪👑 Real Madrid</h2>
 
-            <div class="ficha">
-                <div class="foto"><img src="raphinha.webp" alt="Raphinha" onerror="this.style.display='none'"></div>
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha madrid">
+                <div class="foto">VJ</div>
                 <div class="info">
-                    <div class="dorsal">11</div>
-                    <h2>Raphael Dias Belloli "Raphinha"</h2>
+                    <div class="dorsal">7</div>
+                    <h2>Vinícius Júnior</h2>
                     <span class="posicion">Extremo izquierdo</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 14/12/1996</p>
-                        <p><strong>Lugar:</strong> Porto Alegre, Brasil</p>
+                        <p><strong>Nacimiento:</strong> 12/07/2000</p>
+                        <p><strong>Lugar:</strong> São Gonçalo, Brasil</p>
                         <p><strong>Nacionalidad:</strong> Brasil</p>
                         <p><strong>Altura:</strong> 1,76 m</p>
-                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
                         <p><strong>Posición:</strong> Extremo izquierdo</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>11</span></div>
-                        <div>Goles<span class="rojo">15</span></div>
-                        <div>Asist.<span>3</span></div>
-                        <div>G+A<span class="rojo">18</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref/Sporting News)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="gordon.webp" alt="Anthony Gordon" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">17</div>
-                    <h2>Anthony Michael Gordon</h2>
-                    <span class="posicion">Extremo izquierdo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 24/02/2001 (25 años)</p>
-                        <p><strong>Lugar:</strong> Liverpool, Inglaterra</p>
-                        <p><strong>Nacionalidad:</strong> Inglaterra</p>
-                        <p><strong>Altura:</strong> 1,83 m</p>
-                        <p><strong>Peso:</strong> 76 kg</p>
-                        <p><strong>Posición:</strong> Extremo izquierdo / Delantero</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>13</span></div>
-                        <div>Goles<span class="rojo">3</span></div>
-                        <div>Asist.<span>4</span></div>
-                        <div>G+A<span class="rojo">7</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="adeyemi.webp" alt="Karim Adeyemi" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">14</div>
-                    <h2>Karim-David Adeyemi</h2>
-                    <span class="posicion">Extremo izquierdo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 18/01/2002 (24 años)</p>
-                        <p><strong>Lugar:</strong> Múnich, Alemania</p>
-                        <p><strong>Nacionalidad:</strong> Alemania</p>
-                        <p><strong>Altura:</strong> 1,80 m</p>
-                        <p><strong>Peso:</strong> 75 kg</p>
-                        <p><strong>Posición:</strong> Extremo izquierdo / Delantero</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>8</span></div>
-                        <div>Goles<span class="rojo">2</span></div>
-                        <div>Asist.<span>2</span></div>
-                        <div>G+A<span class="rojo">4</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (LALIGA.com)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="gabriel.jpg" alt="Gabriel Jesus" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">E</div>
                 <div class="info">
                     <div class="dorsal">9</div>
-                    <h2>Gabriel Jesus</h2>
+                    <h2>Endrick</h2>
                     <span class="posicion">Delantero centro</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 03/04/1997 (29 años)</p>
-                        <p><strong>Lugar:</strong> São Paulo, Brasil</p>
+                        <p><strong>Nacimiento:</strong> 21/07/2006</p>
+                        <p><strong>Lugar:</strong> Taguatinga, Brasil</p>
                         <p><strong>Nacionalidad:</strong> Brasil</p>
-                        <p><strong>Altura:</strong> 1,75 m</p>
-                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Altura:</strong> 1,73 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
                         <p><strong>Posición:</strong> Delantero centro</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>7</span></div>
-                        <div>Goles<span class="rojo">3</span></div>
-                        <div>Asist.<span>1</span></div>
-                        <div>G+A<span class="rojo">4</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="ronny.jpg" alt="Roony Bardghji" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">KM</div>
                 <div class="info">
-                    <div class="dorsal">19</div>
-                    <h2>Roony Bardghji</h2>
+                    <div class="dorsal">10</div>
+                    <h2>Kylian Mbappé</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/12/1998</p>
+                        <p><strong>Lugar:</strong> Bondy, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">RG</div>
+                <div class="info">
+                    <div class="dorsal">11</div>
+                    <h2>Rodrygo</h2>
                     <span class="posicion">Extremo derecho</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 15/11/2005 (20 años)</p>
-                        <p><strong>Lugar:</strong> Malmö, Suecia</p>
-                        <p><strong>Nacionalidad:</strong> Suecia</p>
-                        <p><strong>Altura:</strong> 1,75 m</p>
-                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Nacimiento:</strong> 09/01/2001</p>
+                        <p><strong>Lugar:</strong> Osasco, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
+                        <p><strong>Altura:</strong> 1,74 m</p>
+                        <p><strong>Peso:</strong> 64 kg</p>
                         <p><strong>Posición:</strong> Extremo derecho</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>3</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Sin datos de LaLiga en fuentes consultadas</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="jesse.jpg" alt="Jesse Bisiwu" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">BD</div>
                 <div class="info">
-                    <div class="dorsal">27</div>
-                    <h2>Jesse Bisiwu</h2>
-                    <span class="posicion">Delantero</span>
+                    <div class="dorsal">21</div>
+                    <h2>Brahim Díaz</h2>
+                    <span class="posicion">Extremo</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 22 de enero de 2008</p>
-                        <p><strong>Lugar:</strong> Lovaina, Bélgica.</p>
-                        <p><strong>Nacionalidad:</strong> Belgica</p>
-                        <p><strong>Altura:</strong>  1,85 m.</p>
-                        <p><strong>Peso:</strong> 72</p>
-                        <p><strong>Posición:</strong> Delantero</p>
+                        <p><strong>Nacimiento:</strong> 03/08/1999</p>
+                        <p><strong>Lugar:</strong> Málaga, España</p>
+                        <p><strong>Nacionalidad:</strong> Marruecos</p>
+                        <p><strong>Altura:</strong> 1,71 m</p>
+                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Posición:</strong> Extremo</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>0</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Sin datos de LaLiga en fuentes consultadas</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="hamza.jpg" alt="Hamza Abdelkarim" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">29</div>
-                    <h2>Hamza Abdelkarim</h2>
-                    <span class="posicion">Delantero</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 01/01/2008 </p>
-                        <p><strong>Lugar:</strong> kairo</p>
-                        <p><strong>Nacionalidad:</strong> egipto</p>
-                        <p><strong>Altura:</strong> 1,82</p>
-                        <p><strong>Peso:</strong> 76</p>
-                        <p><strong>Posición:</strong> Delantero</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>2</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
                 </div>
             </div>
         </div>
 
         <!-- CENTROCAMPISTAS -->
-        <h2 class="seccion-titulo">🎯 Centrocampistas</h2>
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
         <div class="jugadores-grid">
-            <div class="ficha">
-                <div class="foto"><img src="pedri.webp" alt="Pedri" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">JB</div>
                 <div class="info">
-                    <div class="dorsal">8</div>
-                    <h2>Pedro González López "Pedri"</h2>
+                    <div class="dorsal">5</div>
+                    <h2>Jude Bellingham</h2>
                     <span class="posicion">Centrocampista</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 25/11/2002</p>
-                        <p><strong>Lugar:</strong> Tegueste, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,74 m</p>
-                        <p><strong>Peso:</strong> 65 kg</p>
+                        <p><strong>Nacimiento:</strong> 29/06/2003</p>
+                        <p><strong>Lugar:</strong> Stourbridge, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Inglaterra</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
                         <p><strong>Posición:</strong> Centrocampista</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>10</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>2</span></div>
-                        <div>G+A<span class="rojo">3</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="fermin.webp" alt="Fermín López" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">7</div>
-                    <h2>Fermín López Marín</h2>
-                    <span class="posicion">Centrocampista ofensivo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 11/05/2003</p>
-                        <p><strong>Lugar:</strong> El Campillo, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,76 m</p>
-                        <p><strong>Peso:</strong> 68 kg</p>
-                        <p><strong>Posición:</strong> Mediocentro ofensivo</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>11</span></div>
-                        <div>Goles<span class="rojo">7</span></div>
-                        <div>Asist.<span>5</span></div>
-                        <div>G+A<span class="rojo">12</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (Sporting News)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="olmo.webp" alt="Dani Olmo" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">20</div>
-                    <h2>Daniel Olmo Carvajal "Dani Olmo"</h2>
-                    <span class="posicion">Centrocampista ofensivo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 07/05/1998 (28 años)</p>
-                        <p><strong>Lugar:</strong> Terrassa, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,79 m</p>
-                        <p><strong>Peso:</strong> 72 kg</p>
-                        <p><strong>Posición:</strong> Mediocentro ofensivo / Extremo</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>9</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>3</span></div>
-                        <div>G+A<span class="rojo">4</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="rodri.jpg" alt="Rodri" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">16</div>
-                    <h2>Rodrigo Hernández Cascante "Rodri"</h2>
-                    <span class="posicion">Centrocampista defensivo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 22/06/1996 (30 años)</p>
-                        <p><strong>Lugar:</strong> Madrid, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,90 m</p>
-                        <p><strong>Peso:</strong> 90 kg</p>
-                        <p><strong>Posición:</strong> Centrocampista defensivo</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>9</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">1</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="gavi.jpg" alt="Gavi" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">EC</div>
                 <div class="info">
                     <div class="dorsal">6</div>
-                    <h2>Pablo Martín Páez Gavira "Gavi"</h2>
+                    <h2>Eduardo Camavinga</h2>
                     <span class="posicion">Centrocampista</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 05/08/2004 (22 años)</p>
-                        <p><strong>Lugar:</strong> Los Palacios y Villafranca, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,73 m</p>
+                        <p><strong>Nacimiento:</strong> 10/11/2002</p>
+                        <p><strong>Lugar:</strong> Miconge, Angola</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
                         <p><strong>Peso:</strong> 68 kg</p>
                         <p><strong>Posición:</strong> Centrocampista</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>4</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="Joung.jpg" alt="Frenkie de Jong" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">FV</div>
                 <div class="info">
-                    <div class="dorsal">21</div>
-                    <h2>Frenkie de Jong</h2>
+                    <div class="dorsal">8</div>
+                    <h2>Federico Valverde</h2>
                     <span class="posicion">Centrocampista</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 12/05/1997 (29 años)</p>
-                        <p><strong>Lugar:</strong> Arkel, Países Bajos</p>
-                        <p><strong>Nacionalidad:</strong> Países Bajos</p>
-                        <p><strong>Altura:</strong> 1,81 m</p>
-                        <p><strong>Peso:</strong> 74 kg</p>
+                        <p><strong>Nacimiento:</strong> 22/07/1998</p>
+                        <p><strong>Lugar:</strong> Montevideo, Uruguay</p>
+                        <p><strong>Nacionalidad:</strong> Uruguay</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
                         <p><strong>Posición:</strong> Centrocampista</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>2</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"></div>
+            <div class="ficha madrid">
+                <div class="foto">AT</div>
                 <div class="info">
-                    <div class="dorsal">22</div>
-                    <h2>Marc Bernal</h2>
+                    <div class="dorsal">14</div>
+                    <h2>Aurélien Tchouaméni</h2>
                     <span class="posicion">Centrocampista defensivo</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 26/05/2007 (19 años)</p>
-                        <p><strong>Lugar:</strong> Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,85 m</p>
-                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Nacimiento:</strong> 27/01/2000</p>
+                        <p><strong>Lugar:</strong> Rouen, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,87 m</p>
+                        <p><strong>Peso:</strong> 81 kg</p>
                         <p><strong>Posición:</strong> Centrocampista defensivo</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>3</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>1</span></div>
-                        <div>G+A<span class="rojo">1</span></div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">AG</div>
+                <div class="info">
+                    <div class="dorsal">15</div>
+                    <h2>Arda Güler</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/02/2005</p>
+                        <p><strong>Lugar:</strong> Ankara, Turquía</p>
+                        <p><strong>Nacionalidad:</strong> Turquía</p>
+                        <p><strong>Altura:</strong> 1,76 m</p>
+                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">BS</div>
+                <div class="info">
+                    <div class="dorsal">20</div>
+                    <h2>Bernardo Silva</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 10/08/1994</p>
+                        <p><strong>Lugar:</strong> Lisboa, Portugal</p>
+                        <p><strong>Nacionalidad:</strong> Portugal</p>
+                        <p><strong>Altura:</strong> 1,73 m</p>
+                        <p><strong>Peso:</strong> 64 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- DEFENSAS -->
-        <h2 class="seccion-titulo">🛡️ Defensas</h2>
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
         <div class="jugadores-grid">
-            <div class="ficha">
-                <div class="foto"></div>
-                <div class="info">
-                    <div class="dorsal">5</div>
-                    <h2>Pau Cubarsí Paredes</h2>
-                    <span class="posicion">Defensa central</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 22/01/2007 (19 años)</p>
-                        <p><strong>Lugar:</strong> Estanyol, Girona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,84 m</p>
-                        <p><strong>Peso:</strong> 79 kg</p>
-                        <p><strong>Posición:</strong> Defensa central</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>11</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>2</span></div>
-                        <div>G+A<span class="rojo">2</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"></div>
-                <div class="info">
-                    <div class="dorsal">24</div>
-                    <h2>Eric García Martret</h2>
-                    <span class="posicion">Defensa central</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 09/01/2001 (25 años)</p>
-                        <p><strong>Lugar:</strong> Martorell, Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,80 m</p>
-                        <p><strong>Peso:</strong> 77 kg</p>
-                        <p><strong>Posición:</strong> Defensa central</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>8</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">1</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="xavi.jpg" alt="Xavier Espart" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">12</div>
-                    <h2>Xavier Espart Font "Xavi Espart"</h2>
-                    <span class="posicion">Lateral derecho / Centrocampista</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 21/05/2007 (19 años)</p>
-                        <p><strong>Lugar:</strong> Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,75 m</p>
-                        <p><strong>Peso:</strong> 65 kg</p>
-                        <p><strong>Posición:</strong> Lateral derecho / Centrocampista</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>8</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>2</span></div>
-                        <div>G+A<span class="rojo">3</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="cancelo.jpg" alt="João Cancelo" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">RA</div>
                 <div class="info">
                     <div class="dorsal">2</div>
-                    <h2>João Cancelo</h2>
-                    <span class="posicion">Lateral derecho / Izquierdo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 27/05/1994 (32 años)</p>
-                        <p><strong>Lugar:</strong> Barreiro, Portugal</p>
-                        <p><strong>Nacionalidad:</strong> Portugal</p>
-                        <p><strong>Altura:</strong> 1,82 m</p>
-                        <p><strong>Peso:</strong> 74 kg</p>
-                        <p><strong>Posición:</strong> Lateral derecho / Izquierdo</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>8</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>1</span></div>
-                        <div>G+A<span class="rojo">2</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="balde.jpg" alt="Alejandro Balde" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">3</div>
-                    <h2>Alejandro Balde</h2>
-                    <span class="posicion">Lateral izquierdo</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 18/10/2003 (22 años)</p>
-                        <p><strong>Lugar:</strong> Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,75 m</p>
-                        <p><strong>Peso:</strong> 69 kg</p>
-                        <p><strong>Posición:</strong> Lateral izquierdo</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>3</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="brian.jpg" alt="Brian Fariñas" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">4</div>
-                    <h2>Brian Fariñas</h2>
-                    <span class="posicion">Defensa</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> —</p>
-                        <p><strong>Lugar:</strong> —</p>
-                        <p><strong>Nacionalidad:</strong> —</p>
-                        <p><strong>Altura:</strong> —</p>
-                        <p><strong>Peso:</strong> —</p>
-                        <p><strong>Posición:</strong> Defensa</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>1</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="andreas.jpg" alt="Andreas Christensen" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">15</div>
-                    <h2>Andreas Christensen</h2>
+                    <h2>Raúl Asencio</h2>
                     <span class="posicion">Defensa central</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 10/04/1996 (30 años)</p>
-                        <p><strong>Lugar:</strong> Lillerød, Dinamarca</p>
-                        <p><strong>Nacionalidad:</strong> Dinamarca</p>
-                        <p><strong>Altura:</strong> 1,87 m</p>
-                        <p><strong>Peso:</strong> 82 kg</p>
+                        <p><strong>Nacimiento:</strong> 13/02/2003</p>
+                        <p><strong>Lugar:</strong> Las Palmas, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
                         <p><strong>Posición:</strong> Defensa central</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>6</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>1</span></div>
-                        <div>G+A<span class="rojo">1</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="martin.jpg" alt="Gerard Martín" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">EM</div>
                 <div class="info">
-                    <div class="dorsal">18</div>
-                    <h2>Gerard Martín</h2>
-                    <span class="posicion">Lateral izquierdo / Central</span>
+                    <div class="dorsal">3</div>
+                    <h2>Éder Militão</h2>
+                    <span class="posicion">Defensa central</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 25/02/2002 (24 años)</p>
-                        <p><strong>Lugar:</strong> Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Nacimiento:</strong> 18/01/1998</p>
+                        <p><strong>Lugar:</strong> São Paulo, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
                         <p><strong>Altura:</strong> 1,86 m</p>
                         <p><strong>Peso:</strong> 78 kg</p>
-                        <p><strong>Posición:</strong> Lateral izquierdo / Central</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>9</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="jules.jpg" alt="Jules Kounde" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">DH</div>
                 <div class="info">
-                    <div class="dorsal">23</div>
-                    <h2>Jules Kounde</h2>
-                    <span class="posicion">Defensa central / Lateral derecho</span>
+                    <div class="dorsal">4</div>
+                    <h2>Dean Huijsen</h2>
+                    <span class="posicion">Defensa central</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 12/11/1998 (28 años)</p>
+                        <p><strong>Nacimiento:</strong> 14/04/2005</p>
+                        <p><strong>Lugar:</strong> Ámsterdam, Países Bajos</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,95 m</p>
+                        <p><strong>Peso:</strong> 85 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">TA</div>
+                <div class="info">
+                    <div class="dorsal">12</div>
+                    <h2>Trent Alexander-Arnold</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 07/10/1998</p>
+                        <p><strong>Lugar:</strong> Liverpool, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Inglaterra</p>
+                        <p><strong>Altura:</strong> 1,75 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">IK</div>
+                <div class="info">
+                    <div class="dorsal">16</div>
+                    <h2>Ibrahima Konaté</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/05/1999</p>
                         <p><strong>Lugar:</strong> París, Francia</p>
                         <p><strong>Nacionalidad:</strong> Francia</p>
-                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Altura:</strong> 1,94 m</p>
+                        <p><strong>Peso:</strong> 95 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">MC</div>
+                <div class="info">
+                    <div class="dorsal">17</div>
+                    <h2>Marc Cucurella</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 22/07/1998</p>
+                        <p><strong>Lugar:</strong> Alella, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,75 m</p>
+                        <p><strong>Peso:</strong> 66 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">AC</div>
+                <div class="info">
+                    <div class="dorsal">18</div>
+                    <h2>Álvaro Carreras</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 23/03/2003</p>
+                        <p><strong>Lugar:</strong> Ferrol, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
                         <p><strong>Peso:</strong> 75 kg</p>
-                        <p><strong>Posición:</strong> Defensa central / Lateral derecho</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>6</span></div>
-                        <div>Goles<span class="rojo">1</span></div>
-                        <div>Asist.<span>1</span></div>
-                        <div>G+A<span class="rojo">2</span></div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">AR</div>
+                <div class="info">
+                    <div class="dorsal">22</div>
+                    <h2>Antonio Rüdiger</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/03/1993</p>
+                        <p><strong>Lugar:</strong> Berlín, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,90 m</p>
+                        <p><strong>Peso:</strong> 85 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
                     </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (xGstats)</p>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">FM</div>
+                <div class="info">
+                    <div class="dorsal">23</div>
+                    <h2>Ferland Mendy</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/06/1995</p>
+                        <p><strong>Lugar:</strong> Meulan-en-Yvelines, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha madrid">
+                <div class="foto">DD</div>
+                <div class="info">
+                    <div class="dorsal">24</div>
+                    <h2>Denzel Dumfries</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 18/04/1996</p>
+                        <p><strong>Lugar:</strong> Rotterdam, Países Bajos</p>
+                        <p><strong>Nacionalidad:</strong> Países Bajos</p>
+                        <p><strong>Altura:</strong> 1,89 m</p>
+                        <p><strong>Peso:</strong> 80 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- PORTEROS -->
-        <h2 class="seccion-titulo">🧤 Porteros</h2>
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
         <div class="jugadores-grid">
-            <div class="ficha">
-                <div class="foto"><img src="joan.jpg" alt="Joan Garcia" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">TC</div>
                 <div class="info">
                     <div class="dorsal">1</div>
-                    <h2>Joan Garcia</h2>
+                    <h2>Thibaut Courtois</h2>
                     <span class="posicion">Portero</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 04/05/2001 (25 años)</p>
-                        <p><strong>Lugar:</strong> Sallent, Barcelona, España</p>
-                        <p><strong>Nacionalidad:</strong> España</p>
-                        <p><strong>Altura:</strong> 1,90 m</p>
-                        <p><strong>Peso:</strong> 84 kg</p>
+                        <p><strong>Nacimiento:</strong> 11/05/1992</p>
+                        <p><strong>Lugar:</strong> Bree, Bélgica</p>
+                        <p><strong>Nacionalidad:</strong> Bélgica</p>
+                        <p><strong>Altura:</strong> 2,00 m</p>
+                        <p><strong>Peso:</strong> 96 kg</p>
                         <p><strong>Posición:</strong> Portero</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>13</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Datos de LaLiga 2026/27 (FBref)</p>
                 </div>
             </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="szc.jpg" alt="Wojciech Szczęsny" onerror="this.style.display='none'"></div>
+            <div class="ficha madrid">
+                <div class="foto">AL</div>
                 <div class="info">
                     <div class="dorsal">13</div>
-                    <h2>Wojciech Szczęsny</h2>
+                    <h2>Andriy Lunin</h2>
                     <span class="posicion">Portero</span>
                     <div class="datos">
-                        <p><strong>Nacimiento:</strong> 18/04/1990 (36 años)</p>
-                        <p><strong>Lugar:</strong> Varsovia, Polonia</p>
-                        <p><strong>Nacionalidad:</strong> Polonia</p>
-                        <p><strong>Altura:</strong> 1,96 m</p>
-                        <p><strong>Peso:</strong> 84 kg</p>
-                        <p><strong>Posición:</strong> Portero</p>
-                    </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>0</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Sin datos de LaLiga en fuentes consultadas</p>
-                </div>
-            </div>
-
-            <div class="ficha">
-                <div class="foto"><img src="liva.jpg" alt="Dominik Livaković" onerror="this.style.display='none'"></div>
-                <div class="info">
-                    <div class="dorsal">25</div>
-                    <h2>Dominik Livaković</h2>
-                    <span class="posicion">Portero</span>
-                    <div class="datos">
-                        <p><strong>Nacimiento:</strong> 09/01/1995 (31 años)</p>
-                        <p><strong>Lugar:</strong> Zadar, Croacia</p>
-                        <p><strong>Nacionalidad:</strong> Croacia</p>
-                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Nacimiento:</strong> 11/02/1999</p>
+                        <p><strong>Lugar:</strong> Krasnograd, Ucrania</p>
+                        <p><strong>Nacionalidad:</strong> Ucrania</p>
+                        <p><strong>Altura:</strong> 1,91 m</p>
                         <p><strong>Peso:</strong> 80 kg</p>
                         <p><strong>Posición:</strong> Portero</p>
                     </div>
-                    <div class="stats-temporada">
-                        <div>Partidos<span>0</span></div>
-                        <div>Goles<span class="rojo">0</span></div>
-                        <div>Asist.<span>0</span></div>
-                        <div>G+A<span class="rojo">0</span></div>
-                    </div>
-                    <p class="nota-stats">Sin datos de LaLiga en fuentes consultadas</p>
                 </div>
             </div>
         </div>
 
-        <!-- TABLA RESUMEN -->
-        <div class="tabla-resumen">
-            <h2>📊 Resumen de goles y asistencias · LaLiga 2026/27</h2>
-            <table>
-                <thead>
-                    <tr><th>Jugador</th><th>Partidos</th><th>Goles</th><th>Asistencias</th><th>G+A</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td class="jugador-nombre">Raphinha</td><td>11</td><td class="goles">15</td><td class="asist">3</td><td class="ga">18</td></tr>
-                    <tr><td class="jugador-nombre">Lamine Yamal</td><td>12</td><td class="goles">10</td><td class="asist">8</td><td class="ga">18</td></tr>
-                    <tr><td class="jugador-nombre">Fermín López</td><td>11</td><td class="goles">7</td><td class="asist">5</td><td class="ga">12</td></tr>
-                    <tr><td class="jugador-nombre">Anthony Gordon</td><td>13</td><td class="goles">3</td><td class="asist">4</td><td class="ga">7</td></tr>
-                    <tr><td class="jugador-nombre">Dani Olmo</td><td>9</td><td class="goles">1</td><td class="asist">3</td><td class="ga">4</td></tr>
-                    <tr><td class="jugador-nombre">Karim Adeyemi</td><td>8</td><td class="goles">2</td><td class="asist">2</td><td class="ga">4</td></tr>
-                    <tr><td class="jugador-nombre">Gabriel Jesus</td><td>7</td><td class="goles">3</td><td class="asist">1</td><td class="ga">4</td></tr>
-                    <tr><td class="jugador-nombre">Pedri</td><td>10</td><td class="goles">1</td><td class="asist">2</td><td class="ga">3</td></tr>
-                    <tr><td class="jugador-nombre">Xavi Espart</td><td>8</td><td class="goles">1</td><td class="asist">2</td><td class="ga">3</td></tr>
-                    <tr><td class="jugador-nombre">Pau Cubarsí</td><td>11</td><td class="goles">0</td><td class="asist">2</td><td class="ga">2</td></tr>
-                    <tr><td class="jugador-nombre">João Cancelo</td><td>8</td><td class="goles">1</td><td class="asist">1</td><td class="ga">2</td></tr>
-                    <tr><td class="jugador-nombre">Jules Kounde</td><td>6</td><td class="goles">1</td><td class="asist">1</td><td class="ga">2</td></tr>
-                    <tr><td class="jugador-nombre">Rodri</td><td>9</td><td class="goles">1</td><td class="asist">0</td><td class="ga">1</td></tr>
-                    <tr><td class="jugador-nombre">Eric García</td><td>8</td><td class="goles">1</td><td class="asist">0</td><td class="ga">1</td></tr>
-                    <tr><td class="jugador-nombre">Marc Bernal</td><td>3</td><td class="goles">0</td><td class="asist">1</td><td class="ga">1</td></tr>
-                    <tr><td class="jugador-nombre">Andreas Christensen</td><td>6</td><td class="goles">0</td><td class="asist">1</td><td class="ga">1</td></tr>
-                    <tr><td class="jugador-nombre">Gerard Martín</td><td>9</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Joan Garcia (POR)</td><td>13</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Gavi</td><td>4</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Frenkie de Jong</td><td>2</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Alejandro Balde</td><td>3</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Brian Fariñas</td><td>1</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Hamza Abdelkarim</td><td>2</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Roony Bardghji</td><td>3</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Jesse Bisiwu</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Szczęsny (POR)</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                    <tr><td class="jugador-nombre">Dominik Livaković (POR)</td><td>0</td><td class="goles">0</td><td class="asist">0</td><td class="ga">0</td></tr>
-                </tbody>
-            </table>
+        <!-- ==================== GIRONA ==================== -->
+        <h2 class="equipo-titulo girona">🔴⚪ Girona</h2>
+
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha girona">
+                <div class="foto">CS</div>
+                <div class="info">
+                    <div class="dorsal">7</div>
+                    <h2>Cristhian Stuani</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/10/1986</p>
+                        <p><strong>Lugar:</strong> Tala, Uruguay</p>
+                        <p><strong>Nacionalidad:</strong> Uruguay</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">AR</div>
+                <div class="info">
+                    <div class="dorsal">9</div>
+                    <h2>Abel Ruiz</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 28/01/2000</p>
+                        <p><strong>Lugar:</strong> Almussafes, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">VT</div>
+                <div class="info">
+                    <div class="dorsal">15</div>
+                    <h2>Viktor Tsyhankov</h2>
+                    <span class="posicion">Extremo derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 15/11/1997</p>
+                        <p><strong>Lugar:</strong> Nahariya, Israel</p>
+                        <p><strong>Nacionalidad:</strong> Ucrania</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Extremo derecho</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- CENTROCAMPISTAS -->
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha girona">
+                <div class="foto">DV</div>
+                <div class="info">
+                    <div class="dorsal">6</div>
+                    <h2>Donny van de Beek</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 18/04/1997</p>
+                        <p><strong>Lugar:</strong> Nijkerkerveen, Países Bajos</p>
+                        <p><strong>Nacionalidad:</strong> Países Bajos</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 76 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">AO</div>
+                <div class="info">
+                    <div class="dorsal">18</div>
+                    <h2>Azzedine Ounahi</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 19/04/2000</p>
+                        <p><strong>Lugar:</strong> Casablanca, Marruecos</p>
+                        <p><strong>Nacionalidad:</strong> Marruecos</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">IM</div>
+                <div class="info">
+                    <div class="dorsal">23</div>
+                    <h2>Iván Martín</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/02/1999</p>
+                        <p><strong>Lugar:</strong> Bilbao, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSAS -->
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha girona">
+                <div class="foto">HR</div>
+                <div class="info">
+                    <div class="dorsal">2</div>
+                    <h2>Hugo Rincón</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/01/2003</p>
+                        <p><strong>Lugar:</strong> Valtierra, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">AM</div>
+                <div class="info">
+                    <div class="dorsal">4</div>
+                    <h2>Arnau Martínez</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/04/2003</p>
+                        <p><strong>Lugar:</strong> Premià de Dalt, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">DL</div>
+                <div class="info">
+                    <div class="dorsal">5</div>
+                    <h2>David López</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 09/10/1989</p>
+                        <p><strong>Lugar:</strong> Barcelona, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,85 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">VR</div>
+                <div class="info">
+                    <div class="dorsal">12</div>
+                    <h2>Vitor Reis</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/01/2006</p>
+                        <p><strong>Lugar:</strong> São José dos Campos, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 67 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">AF</div>
+                <div class="info">
+                    <div class="dorsal">16</div>
+                    <h2>Alejandro Francés</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 01/08/2002</p>
+                        <p><strong>Lugar:</strong> Zaragoza, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,81 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">AM</div>
+                <div class="info">
+                    <div class="dorsal">24</div>
+                    <h2>Álex Moreno</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/06/1993</p>
+                        <p><strong>Lugar:</strong> Sant Sadurní d'Anoia, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,79 m</p>
+                        <p><strong>Peso:</strong> 68 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTEROS -->
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
+        <div class="jugadores-grid">
+            <div class="ficha girona">
+                <div class="foto">RB</div>
+                <div class="info">
+                    <div class="dorsal">1</div>
+                    <h2>Rubén Blanco</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/07/1995</p>
+                        <p><strong>Lugar:</strong> Mos, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,85 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">PG</div>
+                <div class="info">
+                    <div class="dorsal">13</div>
+                    <h2>Paulo Gazzaniga</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 02/01/1992</p>
+                        <p><strong>Lugar:</strong> Murphy, Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,95 m</p>
+                        <p><strong>Peso:</strong> 90 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha girona">
+                <div class="foto">MT</div>
+                <div class="info">
+                    <div class="dorsal">22</div>
+                    <h2>Marc-André ter Stegen</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 30/04/1992</p>
+                        <p><strong>Lugar:</strong> Mönchengladbach, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,87 m</p>
+                        <p><strong>Peso:</strong> 85 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ATLÉTICO DE MADRID ==================== -->
+        <h2 class="equipo-titulo atletico">🔴⚪ Atlético de Madrid</h2>
+
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha atletico">
+                <div class="foto">AS</div>
+                <div class="info">
+                    <div class="dorsal">9</div>
+                    <h2>Alexander Sørloth</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 05/12/1995</p>
+                        <p><strong>Lugar:</strong> Trondheim, Noruega</p>
+                        <p><strong>Nacionalidad:</strong> Noruega</p>
+                        <p><strong>Altura:</strong> 1,95 m</p>
+                        <p><strong>Peso:</strong> 94 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">AL</div>
+                <div class="info">
+                    <div class="dorsal">11</div>
+                    <h2>Ademola Lookman</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/10/1997</p>
+                        <p><strong>Lugar:</strong> Wandsworth, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Nigeria</p>
+                        <p><strong>Altura:</strong> 1,72 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Extremo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">JD</div>
+                <div class="info">
+                    <div class="dorsal">15</div>
+                    <h2>Jonathan David</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/01/2000</p>
+                        <p><strong>Lugar:</strong> Brooklyn, Estados Unidos</p>
+                        <p><strong>Nacionalidad:</strong> Canadá</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 74 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">JA</div>
+                <div class="info">
+                    <div class="dorsal">19</div>
+                    <h2>Julián Álvarez</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 31/01/2000</p>
+                        <p><strong>Lugar:</strong> Calchín, Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,70 m</p>
+                        <p><strong>Peso:</strong> 71 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">GS</div>
+                <div class="info">
+                    <div class="dorsal">20</div>
+                    <h2>Giuliano Simeone</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 18/12/2002</p>
+                        <p><strong>Lugar:</strong> Roma, Italia</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,74 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Extremo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTROCAMPISTAS -->
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha atletico">
+                <div class="foto">K</div>
+                <div class="info">
+                    <div class="dorsal">6</div>
+                    <h2>Koke</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/01/1992</p>
+                        <p><strong>Lugar:</strong> Madrid, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,76 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">LK</div>
+                <div class="info">
+                    <div class="dorsal">7</div>
+                    <h2>Lee Kang-In</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 19/02/2001</p>
+                        <p><strong>Lugar:</strong> Incheon, Corea del Sur</p>
+                        <p><strong>Nacionalidad:</strong> Corea del Sur</p>
+                        <p><strong>Altura:</strong> 1,73 m</p>
+                        <p><strong>Peso:</strong> 66 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">PB</div>
+                <div class="info">
+                    <div class="dorsal">8</div>
+                    <h2>Pablo Barrios</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 15/06/2003</p>
+                        <p><strong>Lugar:</strong> Madrid, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">AB</div>
+                <div class="info">
+                    <div class="dorsal">10</div>
+                    <h2>Álex Baena</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/07/2001</p>
+                        <p><strong>Lugar:</strong> Roquetas de Mar, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,93 m</p>
+                        <p><strong>Peso:</strong> 79 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">MH</div>
+                <div class="info">
+                    <div class="dorsal">23</div>
+                    <h2>Morten Hjulmand</h2>
+                    <span class="posicion">Centrocampista defensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/06/1999</p>
+                        <p><strong>Lugar:</strong> Copenhague, Dinamarca</p>
+                        <p><strong>Nacionalidad:</strong> Dinamarca</p>
+                        <p><strong>Altura:</strong> 1,85 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista defensivo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">JC</div>
+                <div class="info">
+                    <div class="dorsal">5</div>
+                    <h2>Johnny Cardoso</h2>
+                    <span class="posicion">Centrocampista defensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/09/2001</p>
+                        <p><strong>Lugar:</strong> Denville, Estados Unidos</p>
+                        <p><strong>Nacionalidad:</strong> Estados Unidos</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 71 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista defensivo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSAS -->
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha atletico">
+                <div class="foto">AG</div>
+                <div class="info">
+                    <div class="dorsal">22</div>
+                    <h2>Alejandro Grimaldo</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/09/1995</p>
+                        <p><strong>Lugar:</strong> Valencia, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,71 m</p>
+                        <p><strong>Peso:</strong> 63 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">CR</div>
+                <div class="info">
+                    <div class="dorsal">21</div>
+                    <h2>Cristian Romero</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/04/1998</p>
+                        <p><strong>Lugar:</strong> Córdoba, Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,85 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">DH</div>
+                <div class="info">
+                    <div class="dorsal">17</div>
+                    <h2>Dávid Hancko</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 13/12/1997</p>
+                        <p><strong>Lugar:</strong> Prievidza, Eslovaquia</p>
+                        <p><strong>Nacionalidad:</strong> Eslovaquia</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 82 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">RL</div>
+                <div class="info">
+                    <div class="dorsal">24</div>
+                    <h2>Robin Le Normand</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 11/11/1996</p>
+                        <p><strong>Lugar:</strong> Pabu, Francia</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,87 m</p>
+                        <p><strong>Peso:</strong> 84 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">NM</div>
+                <div class="info">
+                    <div class="dorsal">16</div>
+                    <h2>Nahuel Molina</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 06/04/1998</p>
+                        <p><strong>Lugar:</strong> Embalse, Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,75 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTEROS -->
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
+        <div class="jugadores-grid">
+            <div class="ficha atletico">
+                <div class="foto">JO</div>
+                <div class="info">
+                    <div class="dorsal">13</div>
+                    <h2>Jan Oblak</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 07/01/1993</p>
+                        <p><strong>Lugar:</strong> Škofja Loka, Eslovenia</p>
+                        <p><strong>Nacionalidad:</strong> Eslovenia</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 87 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha atletico">
+                <div class="foto">JM</div>
+                <div class="info">
+                    <div class="dorsal">1</div>
+                    <h2>Juan Musso</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 06/05/1994</p>
+                        <p><strong>Lugar:</strong> San Nicolás de los Arroyos, Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
+                        <p><strong>Altura:</strong> 1,91 m</p>
+                        <p><strong>Peso:</strong> 93 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ATHLETIC CLUB ==================== -->
+        <h2 class="equipo-titulo athletic">🦁🔴 Athletic Club</h2>
+
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha athletic">
+                <div class="foto">IW</div>
+                <div class="info">
+                    <div class="dorsal">9</div>
+                    <h2>Iñaki Williams</h2>
+                    <span class="posicion">Extremo derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 15/06/1994</p>
+                        <p><strong>Lugar:</strong> Bilbao, España</p>
+                        <p><strong>Nacionalidad:</strong> Ghana</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 81 kg</p>
+                        <p><strong>Posición:</strong> Extremo derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">NG</div>
+                <div class="info">
+                    <div class="dorsal">10</div>
+                    <h2>Nico Williams</h2>
+                    <span class="posicion">Extremo izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/07/2002</p>
+                        <p><strong>Lugar:</strong> Pamplona, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,81 m</p>
+                        <p><strong>Peso:</strong> 67 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">GG</div>
+                <div class="info">
+                    <div class="dorsal">12</div>
+                    <h2>Gorka Guruzeta</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/09/1996</p>
+                        <p><strong>Lugar:</strong> San Sebastián, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 80 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">AD</div>
+                <div class="info">
+                    <div class="dorsal">25</div>
+                    <h2>Álvaro Djaló</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/09/1999</p>
+                        <p><strong>Lugar:</strong> Bata, Guinea Ecuatorial</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Extremo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTROCAMPISTAS -->
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha athletic">
+                <div class="foto">IS</div>
+                <div class="info">
+                    <div class="dorsal">8</div>
+                    <h2>Oihan Sancet</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/04/2000</p>
+                        <p><strong>Lugar:</strong> Pamplona, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSAS -->
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha athletic">
+                <div class="foto">HR</div>
+                <div class="info">
+                    <div class="dorsal">15</div>
+                    <h2>Hugo Rincón</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/01/2003</p>
+                        <p><strong>Lugar:</strong> Valtierra, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">DY</div>
+                <div class="info">
+                    <div class="dorsal">5</div>
+                    <h2>Yeray Álvarez</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 24/01/1995</p>
+                        <p><strong>Lugar:</strong> Barakaldo, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">DV</div>
+                <div class="info">
+                    <div class="dorsal">3</div>
+                    <h2>Dani Vivian</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 05/07/1999</p>
+                        <p><strong>Lugar:</strong> Vitoria, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 80 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">YB</div>
+                <div class="info">
+                    <div class="dorsal">18</div>
+                    <h2>Yuri Berchiche</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 10/02/1990</p>
+                        <p><strong>Lugar:</strong> Zarautz, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha athletic">
+                <div class="foto">OL</div>
+                <div class="info">
+                    <div class="dorsal">4</div>
+                    <h2>Óscar de Marcos</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/04/1989</p>
+                        <p><strong>Lugar:</strong> Laguardia, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 76 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTEROS -->
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
+        <div class="jugadores-grid">
+            <div class="ficha athletic">
+                <div class="foto">US</div>
+                <div class="info">
+                    <div class="dorsal">1</div>
+                    <h2>Unai Simón</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 11/06/1997</p>
+                        <p><strong>Lugar:</strong> Vitoria, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,90 m</p>
+                        <p><strong>Peso:</strong> 86 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PARIS SAINT-GERMAIN ==================== -->
+        <h2 class="equipo-titulo psg">🔵🔴 Paris Saint-Germain</h2>
+
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha psg">
+                <div class="foto">BB</div>
+                <div class="info">
+                    <div class="dorsal">29</div>
+                    <h2>Bradley Barcola</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 02/09/2002</p>
+                        <p><strong>Lugar:</strong> Villeurbanne, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 71 kg</p>
+                        <p><strong>Posición:</strong> Extremo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">DD</div>
+                <div class="info">
+                    <div class="dorsal">14</div>
+                    <h2>Désiré Doué</h2>
+                    <span class="posicion">Extremo / Delantero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/06/2005</p>
+                        <p><strong>Lugar:</strong> Angers, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,81 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Extremo / Delantero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">FT</div>
+                <div class="info">
+                    <div class="dorsal">9</div>
+                    <h2>Ferran Torres</h2>
+                    <span class="posicion">Delantero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 29/02/2000</p>
+                        <p><strong>Lugar:</strong> Foios, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 77 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">KK</div>
+                <div class="info">
+                    <div class="dorsal">7</div>
+                    <h2>Khvicha Kvaratskhelia</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/02/2001</p>
+                        <p><strong>Lugar:</strong> Tiflis, Georgia</p>
+                        <p><strong>Nacionalidad:</strong> Georgia</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">OD</div>
+                <div class="info">
+                    <div class="dorsal">10</div>
+                    <h2>Ousmane Dembélé</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 15/05/1997</p>
+                        <p><strong>Lugar:</strong> Vernon, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 67 kg</p>
+                        <p><strong>Posición:</strong> Extremo derecho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTROCAMPISTAS -->
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha psg">
+                <div class="foto">FR</div>
+                <div class="info">
+                    <div class="dorsal">8</div>
+                    <h2>Fabián Ruiz</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/04/1996</p>
+                        <p><strong>Lugar:</strong> Los Palacios y Villafranca, España</p>
+                        <p><strong>Nacionalidad:</strong> España</p>
+                        <p><strong>Altura:</strong> 1,89 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">JN</div>
+                <div class="info">
+                    <div class="dorsal">87</div>
+                    <h2>João Neves</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/09/2004</p>
+                        <p><strong>Lugar:</strong> Tavira, Portugal</p>
+                        <p><strong>Nacionalidad:</strong> Portugal</p>
+                        <p><strong>Altura:</strong> 1,74 m</p>
+                        <p><strong>Peso:</strong> 61 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">SM</div>
+                <div class="info">
+                    <div class="dorsal">24</div>
+                    <h2>Senny Mayulu</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 17/05/2006</p>
+                        <p><strong>Lugar:</strong> Le Blanc-Mesnil, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">V</div>
+                <div class="info">
+                    <div class="dorsal">17</div>
+                    <h2>Vitinha</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 13/02/2000</p>
+                        <p><strong>Lugar:</strong> Arcos de Valdevez, Portugal</p>
+                        <p><strong>Nacionalidad:</strong> Portugal</p>
+                        <p><strong>Altura:</strong> 1,72 m</p>
+                        <p><strong>Peso:</strong> 64 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">WZ</div>
+                <div class="info">
+                    <div class="dorsal">33</div>
+                    <h2>Warren Zaïre-Emery</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/03/2006</p>
+                        <p><strong>Lugar:</strong> Montreuil, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSAS -->
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha psg">
+                <div class="foto">AH</div>
+                <div class="info">
+                    <div class="dorsal">2</div>
+                    <h2>Achraf Hakimi</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 04/11/1998</p>
+                        <p><strong>Lugar:</strong> Madrid, España</p>
+                        <p><strong>Nacionalidad:</strong> Marruecos</p>
+                        <p><strong>Altura:</strong> 1,81 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">LB</div>
+                <div class="info">
+                    <div class="dorsal">35</div>
+                    <h2>Lucas Beraldo</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 24/11/2003</p>
+                        <p><strong>Lugar:</strong> São Paulo, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
+                        <p><strong>Altura:</strong> 1,85 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">IZ</div>
+                <div class="info">
+                    <div class="dorsal">6</div>
+                    <h2>Illia Zabarnyi</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 01/09/2002</p>
+                        <p><strong>Lugar:</strong> Kiev, Ucrania</p>
+                        <p><strong>Nacionalidad:</strong> Ucrania</p>
+                        <p><strong>Altura:</strong> 1,89 m</p>
+                        <p><strong>Peso:</strong> 82 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">LD</div>
+                <div class="info">
+                    <div class="dorsal">12</div>
+                    <h2>Lucas Digne</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 20/07/1993</p>
+                        <p><strong>Lugar:</strong> Meaux, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 74 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">LH</div>
+                <div class="info">
+                    <div class="dorsal">21</div>
+                    <h2>Lucas Hernández</h2>
+                    <span class="posicion">Defensa central / Lateral</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/02/1996</p>
+                        <p><strong>Lugar:</strong> Marsella, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 79 kg</p>
+                        <p><strong>Posición:</strong> Defensa central / Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">M</div>
+                <div class="info">
+                    <div class="dorsal">5</div>
+                    <h2>Marquinhos</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/05/1994</p>
+                        <p><strong>Lugar:</strong> São Paulo, Brasil</p>
+                        <p><strong>Nacionalidad:</strong> Brasil</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">NM</div>
+                <div class="info">
+                    <div class="dorsal">25</div>
+                    <h2>Nuno Mendes</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 19/06/2002</p>
+                        <p><strong>Lugar:</strong> Sintra, Portugal</p>
+                        <p><strong>Nacionalidad:</strong> Portugal</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">WP</div>
+                <div class="info">
+                    <div class="dorsal">51</div>
+                    <h2>Willian Pacho</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 16/10/2001</p>
+                        <p><strong>Lugar:</strong> Quinindé, Ecuador</p>
+                        <p><strong>Nacionalidad:</strong> Ecuador</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 81 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTEROS -->
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
+        <div class="jugadores-grid">
+            <div class="ficha psg">
+                <div class="foto">AL</div>
+                <div class="info">
+                    <div class="dorsal">16</div>
+                    <h2>Alessandro Longoni</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 31/01/2008</p>
+                        <p><strong>Lugar:</strong> Italia</p>
+                        <p><strong>Nacionalidad:</strong> Italia</p>
+                        <p><strong>Altura:</strong> 1,90 m</p>
+                        <p><strong>Peso:</strong> 80 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">LC</div>
+                <div class="info">
+                    <div class="dorsal">30</div>
+                    <h2>Lucas Chevalier</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 06/11/2001</p>
+                        <p><strong>Lugar:</strong> Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,89 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha psg">
+                <div class="foto">MS</div>
+                <div class="info">
+                    <div class="dorsal">39</div>
+                    <h2>Matvey Safonov</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 25/02/1999</p>
+                        <p><strong>Lugar:</strong> Rusia</p>
+                        <p><strong>Nacionalidad:</strong> Rusia</p>
+                        <p><strong>Altura:</strong> 1,92 m</p>
+                        <p><strong>Peso:</strong> 85 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== BAYERN MÚNICH ==================== -->
+        <h2 class="equipo-titulo bayern">🔴⚪ Bayern Múnich</h2>
+
+        <!-- ATACANTES -->
+        <h3 class="seccion-titulo">⚡ Atacantes</h3>
+        <div class="jugadores-grid">
+            <div class="ficha bayern">
+                <div class="foto">HK</div>
+                <div class="info">
+                    <div class="dorsal">9</div>
+                    <h2>Harry Kane</h2>
+                    <span class="posicion">Delantero centro</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 28/07/1993</p>
+                        <p><strong>Lugar:</strong> Londres, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Inglaterra</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 86 kg</p>
+                        <p><strong>Posición:</strong> Delantero centro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">LD</div>
+                <div class="info">
+                    <div class="dorsal">14</div>
+                    <h2>Luis Díaz</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 13/01/1997</p>
+                        <p><strong>Lugar:</strong> Barrancas, Colombia</p>
+                        <p><strong>Nacionalidad:</strong> Colombia</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 66 kg</p>
+                        <p><strong>Posición:</strong> Extremo izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">MO</div>
+                <div class="info">
+                    <div class="dorsal">17</div>
+                    <h2>Michael Olise</h2>
+                    <span class="posicion">Extremo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/12/2001</p>
+                        <p><strong>Lugar:</strong> Londres, Inglaterra</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Extremo derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">SG</div>
+                <div class="info">
+                    <div class="dorsal">7</div>
+                    <h2>Serge Gnabry</h2>
+                    <span class="posicion">Extremo / Delantero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 14/07/1995</p>
+                        <p><strong>Lugar:</strong> Stuttgart, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,76 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Extremo / Delantero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTROCAMPISTAS -->
+        <h3 class="seccion-titulo">🎯 Centrocampistas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha bayern">
+                <div class="foto">JK</div>
+                <div class="info">
+                    <div class="dorsal">6</div>
+                    <h2>Joshua Kimmich</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/02/1995</p>
+                        <p><strong>Lugar:</strong> Rottweil, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,77 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">JM</div>
+                <div class="info">
+                    <div class="dorsal">10</div>
+                    <h2>Jamal Musiala</h2>
+                    <span class="posicion">Centrocampista ofensivo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 26/02/2003</p>
+                        <p><strong>Lugar:</strong> Stuttgart, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,84 m</p>
+                        <p><strong>Peso:</strong> 72 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista ofensivo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">KL</div>
+                <div class="info">
+                    <div class="dorsal">27</div>
+                    <h2>Konrad Laimer</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/05/1997</p>
+                        <p><strong>Lugar:</strong> Salzburgo, Austria</p>
+                        <p><strong>Nacionalidad:</strong> Austria</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 73 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">AP</div>
+                <div class="info">
+                    <div class="dorsal">45</div>
+                    <h2>Aleksandar Pavlović</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/05/2004</p>
+                        <p><strong>Lugar:</strong> Múnich, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">TB</div>
+                <div class="info">
+                    <div class="dorsal">8</div>
+                    <h2>Tom Bischof</h2>
+                    <span class="posicion">Centrocampista</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 28/06/2005</p>
+                        <p><strong>Lugar:</strong> Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 74 kg</p>
+                        <p><strong>Posición:</strong> Centrocampista</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEFENSAS -->
+        <h3 class="seccion-titulo">🛡️ Defensas</h3>
+        <div class="jugadores-grid">
+            <div class="ficha bayern">
+                <div class="foto">AD</div>
+                <div class="info">
+                    <div class="dorsal">19</div>
+                    <h2>Alphonso Davies</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 02/11/2000</p>
+                        <p><strong>Lugar:</strong> Buduburam, Ghana</p>
+                        <p><strong>Nacionalidad:</strong> Canadá</p>
+                        <p><strong>Altura:</strong> 1,83 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">DU</div>
+                <div class="info">
+                    <div class="dorsal">2</div>
+                    <h2>Dayot Upamecano</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/10/1998</p>
+                        <p><strong>Lugar:</strong> Évreux, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,86 m</p>
+                        <p><strong>Peso:</strong> 83 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">HI</div>
+                <div class="info">
+                    <div class="dorsal">21</div>
+                    <h2>Hiroki Ito</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 12/05/1999</p>
+                        <p><strong>Lugar:</strong> Hamamatsu, Japón</p>
+                        <p><strong>Nacionalidad:</strong> Japón</p>
+                        <p><strong>Altura:</strong> 1,88 m</p>
+                        <p><strong>Peso:</strong> 82 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">JT</div>
+                <div class="info">
+                    <div class="dorsal">4</div>
+                    <h2>Jonathan Tah</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 11/02/1996</p>
+                        <p><strong>Lugar:</strong> Hamburgo, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,95 m</p>
+                        <p><strong>Peso:</strong> 95 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">JS</div>
+                <div class="info">
+                    <div class="dorsal">44</div>
+                    <h2>Josip Stanišić</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 02/04/2000</p>
+                        <p><strong>Lugar:</strong> Múnich, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Croacia</p>
+                        <p><strong>Altura:</strong> 1,82 m</p>
+                        <p><strong>Peso:</strong> 78 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">KM</div>
+                <div class="info">
+                    <div class="dorsal">3</div>
+                    <h2>Kim Min-Jae</h2>
+                    <span class="posicion">Defensa central</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 15/11/1996</p>
+                        <p><strong>Lugar:</strong> Tongyeong, Corea del Sur</p>
+                        <p><strong>Nacionalidad:</strong> Corea del Sur</p>
+                        <p><strong>Altura:</strong> 1,90 m</p>
+                        <p><strong>Peso:</strong> 88 kg</p>
+                        <p><strong>Posición:</strong> Defensa central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">NB</div>
+                <div class="info">
+                    <div class="dorsal">11</div>
+                    <h2>Nathaniel Brown</h2>
+                    <span class="posicion">Lateral izquierdo</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 16/06/2003</p>
+                        <p><strong>Lugar:</strong> Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,80 m</p>
+                        <p><strong>Peso:</strong> 75 kg</p>
+                        <p><strong>Posición:</strong> Lateral izquierdo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">SB</div>
+                <div class="info">
+                    <div class="dorsal">23</div>
+                    <h2>Sacha Boey</h2>
+                    <span class="posicion">Lateral derecho</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 13/09/2000</p>
+                        <p><strong>Lugar:</strong> París, Francia</p>
+                        <p><strong>Nacionalidad:</strong> Francia</p>
+                        <p><strong>Altura:</strong> 1,78 m</p>
+                        <p><strong>Peso:</strong> 70 kg</p>
+                        <p><strong>Posición:</strong> Lateral derecho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTEROS -->
+        <h3 class="seccion-titulo">🧤 Porteros</h3>
+        <div class="jugadores-grid">
+            <div class="ficha bayern">
+                <div class="foto">MN</div>
+                <div class="info">
+                    <div class="dorsal">1</div>
+                    <h2>Manuel Neuer</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 27/03/1986</p>
+                        <p><strong>Lugar:</strong> Gelsenkirchen, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,93 m</p>
+                        <p><strong>Peso:</strong> 93 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">SU</div>
+                <div class="info">
+                    <div class="dorsal">26</div>
+                    <h2>Sven Ulreich</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 03/08/1988</p>
+                        <p><strong>Lugar:</strong> Schorndorf, Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,92 m</p>
+                        <p><strong>Peso:</strong> 87 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ficha bayern">
+                <div class="foto">JU</div>
+                <div class="info">
+                    <div class="dorsal">40</div>
+                    <h2>Jonas Urbig</h2>
+                    <span class="posicion">Portero</span>
+                    <div class="datos">
+                        <p><strong>Nacimiento:</strong> 08/08/2003</p>
+                        <p><strong>Lugar:</strong> Alemania</p>
+                        <p><strong>Nacionalidad:</strong> Alemania</p>
+                        <p><strong>Altura:</strong> 1,89 m</p>
+                        <p><strong>Peso:</strong> 82 kg</p>
+                        <p><strong>Posición:</strong> Portero</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <footer>
